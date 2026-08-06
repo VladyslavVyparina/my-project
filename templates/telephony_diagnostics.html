@@ -1,0 +1,91 @@
+{% extends "admin_base.html" %}
+{% block title %}Live Call Diagnostics{% endblock %}
+{% block nav_actions %}{% endblock %}
+{% block content %}
+<h1 class="page-title">Live Call Diagnostics</h1>
+<p class="page-sub">Технічний стан інтеграції ElevenLabs SIP + Zadarma, останні дзвінки та швидкі команди для перевірки webhook.</p>
+
+<div class="grid-cards" style="margin-bottom: 24px;">
+  <article class="tile" style="cursor: default;">
+    <h3>{{ ok_count }}/{{ checks_total }}</h3>
+    <div class="meta">Конфігурацій активні</div>
+  </article>
+  <article class="tile" style="cursor: default;">
+    <h3>{{ recent_calls|length }}</h3>
+    <div class="meta">Останні записи дзвінків</div>
+  </article>
+  <article class="tile" style="cursor: default;">
+    <h3>{{ checks[0][1] }}</h3>
+    <div class="meta">Поточний провайдер</div>
+  </article>
+</div>
+
+<div class="card card-pad" style="margin-bottom: 24px;">
+  <h2 class="card-h">Перевірка конфігурації</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr><th>Параметр</th><th>Стан</th></tr>
+      </thead>
+      <tbody>
+      {% for key, value in checks %}
+        <tr>
+          <td><strong>{{ key }}</strong></td>
+          <td>
+            {% if value == "missing" %}
+            <span class="badge" style="background:#ff3b301f;color:#ff3b30;">missing</span>
+            {% elif value == "-" %}
+            <span class="badge">-</span>
+            {% else %}
+            <span class="badge" style="background:#34c75922;color:#1a7f37;">{{ value }}</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card card-pad" style="margin-bottom: 24px;">
+  <h2 class="card-h">Швидка перевірка webhook</h2>
+  <p style="margin:0 0 12px;color:var(--text-secondary);">Запустіть на сервері, щоб перевірити endpoint ElevenLabs webhook:</p>
+  <pre style="white-space:pre-wrap;background:#f6f6f8;border:1px solid var(--border);padding:14px;border-radius:12px;font-size:12px;">curl -X POST "{{ request.url.scheme }}://{{ request.headers.get('host') }}/telephony/elevenlabs/webhook" \
+-H "Content-Type: application/json" \
+-d '{"type":"post_call_transcription","data":{"agent_id":"test","conversation_id":"conv_test","status":"done","conversation_initiation_client_data":{"dynamic_variables":{"lead_id":"1"}},"transcript":[{"role":"agent","message":"Вітаю"},{"role":"user","message":"Тест"}]}}'</pre>
+</div>
+
+<div class="card card-pad">
+  <h2 class="card-h">Останні дзвінки</h2>
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Час</th>
+          <th>Provider</th>
+          <th>Status</th>
+          <th>Call ID</th>
+          <th>Причина збою</th>
+          <th>Summary</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for c in recent_calls %}
+        <tr>
+          <td style="white-space:nowrap;">{{ c.created_at | dt_kyiv }}</td>
+          <td>{{ c.provider }}</td>
+          <td><span class="badge">{{ c.status }}</span></td>
+          <td>{{ c.call_id or '—' }}</td>
+          <td style="max-width:260px;color:#ff3b30;">
+            {{ c.reason or '—' }}
+          </td>
+          <td>{{ (c.summary or '—')[:120] }}{% if c.summary and c.summary|length > 120 %}…{% endif %}</td>
+        </tr>
+      {% else %}
+        <tr><td colspan="6"><div class="empty-state">Ще немає записів дзвінків.</div></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

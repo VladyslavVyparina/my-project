@@ -1,0 +1,70 @@
+{% extends "admin_base.html" %}
+{% block title %}Команда{% endblock %}
+{% block nav_actions %}{% endblock %}
+{% block content %}
+<h1 class="page-title">Команда CRM</h1>
+<p class="page-sub">Керуйте доступом менеджерів до адмінки: ролі, активація та створення нових облікових записів.</p>
+
+<div class="card card-pad" style="margin-bottom: 24px;">
+  <h2 class="card-h">Додати користувача</h2>
+  <form method="post" action="/admin/users">
+    <div class="form-row cols-2">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="text" placeholder="manager@company.com" required>
+      </div>
+      <div>
+        <label for="password">Пароль</label>
+        <input id="password" name="password" type="password" required>
+      </div>
+    </div>
+    <div class="form-row cols-2">
+      <div>
+        <label for="role">Роль</label>
+        <select id="role" name="role">
+          <option value="manager">manager</option>
+          <option value="owner">owner</option>
+        </select>
+      </div>
+      <div style="display:flex;align-items:flex-end;">
+        <button class="btn btn-primary" type="submit">Створити користувача</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="card">
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Роль</th>
+          <th>Статус</th>
+          <th>Створено</th>
+          <th>Дія</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for u in users %}
+        <tr>
+          <td>#{{ u.id }}</td>
+          <td>{{ u.email }}</td>
+          <td><span class="badge">{{ u.role }}</span></td>
+          <td>{{ 'active' if u.is_active else 'disabled' }}</td>
+          <td style="color: var(--text-secondary); font-size: 13px;">{{ u.created_at | dt_kyiv }}</td>
+          <td>
+            <form method="post" action="/admin/users/{{ u.id }}/toggle">
+              <button class="btn btn-outline" type="submit">{{ 'Вимкнути' if u.is_active else 'Увімкнути' }}</button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr><td colspan="6"><div class="empty-state">Користувачів поки немає.</div></td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

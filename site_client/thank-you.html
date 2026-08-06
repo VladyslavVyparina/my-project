@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Дякуємо за покупку! — Пластиліновий дзен</title>
+    <style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter','Segoe UI',Arial,sans-serif;background:#E5E5E5;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 10px;color:#1A1A1A;}
+
+/* PAGE FRAME 9:16 */
+.page{width:100%;max-width:420px;aspect-ratio:9/16;background:#EAF5FD;border-radius:28px;overflow-y:auto;overflow-x:hidden;position:relative;box-shadow:0 20px 60px rgba(100,150,200,0.25);padding:14px 16px 20px;display:flex;flex-direction:column;}
+.page::-webkit-scrollbar{width:0;}
+
+/* HERO - starts higher, no status row above */
+.hero{text-align:center;margin-bottom:14px;}
+.hero-emoji{font-size:38px;margin-bottom:4px;display:inline-block;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.hero h1{font-size:28px;font-weight:900;line-height:1;letter-spacing:-0.6px;color:#1A1A1A;margin-bottom:6px;}
+.hero p{font-size:13px;color:#1A3D5C;font-weight:600;line-height:1.4;padding:0 6px;}
+
+/* PROGRESS - readable */
+.progress{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:11px;padding:9px 10px;background:#fff;border-radius:50px;font-size:11px;box-shadow:0 2px 8px rgba(100,150,200,0.1);}
+.progress .step{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:#7A1F3D;}
+.progress .step .dot{width:16px;height:16px;border-radius:50%;background:#7A1F3D;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;}
+.progress .step.pending{color:#7A8FA3;}
+.progress .step.pending .dot{background:#C9D4E0;color:#5A6B7C;}
+.progress .arrow{color:#C9D4E0;font-size:11px;font-weight:700;}
+
+/* CARDS */
+.card{background:#fff;border-radius:14px;padding:11px 13px;margin-bottom:9px;box-shadow:0 4px 14px rgba(100,150,200,0.1);}
+
+/* MAIL CARD */
+.card.mail{background:#fff;border:2px solid #E91E88;position:relative;}
+.card.mail::before{content:'';position:absolute;top:-7px;left:14px;width:34px;height:11px;background:#F9DFA0;transform:rotate(-3deg);border-radius:1px;opacity:0.9;}
+.mail-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.mail-icon{width:30px;height:30px;background:#FCE4F0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.mail-head h2{font-size:13px;font-weight:900;color:#1A1A1A;line-height:1.1;}
+.mail-head .accent{font-family:'Caveat','Georgia',cursive;font-style:italic;font-size:15px;color:#E91E88;font-weight:700;}
+.card.mail p{font-size:11.5px;color:#1A3D5C;line-height:1.45;font-weight:500;}
+.card.mail .timing{margin-top:7px;display:inline-flex;align-items:center;gap:5px;background:#EAF5FD;padding:4px 9px;border-radius:50px;font-size:10px;font-weight:700;color:#1A3D5C;}
+.card.mail .timing .clock{font-size:11px;}
+
+/* HOW-TO CARD */
+.howto h3{font-size:12.5px;font-weight:800;color:#1A1A1A;margin-bottom:8px;}
+.howto ol{list-style:none;counter-reset:steps;padding-left:0;}
+.howto ol li{counter-increment:steps;position:relative;padding-left:24px;margin-bottom:6px;font-size:11.5px;color:#1A3D5C;line-height:1.4;font-weight:500;}
+.howto ol li:last-child{margin-bottom:0;}
+.howto ol li::before{content:counter(steps);position:absolute;left:0;top:0;width:17px;height:17px;background:#A8DFFF;color:#1A3D5C;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
+.howto .spam-warning{margin-top:9px;background:#F9DFA0;border-radius:10px;padding:7px 10px;font-size:10.5px;color:#1A1A1A;line-height:1.4;font-weight:500;display:flex;gap:6px;align-items:flex-start;}
+.howto .spam-warning .icon{font-size:11px;flex-shrink:0;}
+.howto .spam-warning b{font-weight:800;}
+
+/* TELEGRAM CARD */
+.card.telegram{background:linear-gradient(135deg,#A8DFFF 0%,#EAF5FD 100%);border:none;}
+.tg-head{display:flex;gap:8px;margin-bottom:7px;}
+.tg-icon{width:30px;height:30px;background:#229ED9;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(34,158,217,0.3);}
+.tg-icon svg{width:18px;height:18px;fill:#fff;}
+.tg-text-block{flex:1;}
+.tg-text-block h3{font-size:12.5px;font-weight:900;color:#1A3D5C;line-height:1.15;margin-bottom:2px;}
+.tg-text-block .accent{font-family:'Caveat','Georgia',cursive;font-style:italic;font-size:15px;color:#E91E88;font-weight:700;}
+.tg-text-block p{font-size:10.5px;color:#1A3D5C;line-height:1.4;font-weight:500;}
+.tg-btn{display:inline-flex;align-items:center;gap:6px;background:#229ED9;color:#fff;padding:7px 14px;border-radius:50px;font-size:11px;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 12px rgba(34,158,217,0.35);transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;}
+.tg-btn svg{width:13px;height:13px;fill:#fff;}
+
+/* SUPPORT CARD */
+.card.support{background:#fff;border:2px dashed #C9B8E0;}
+.support h3{font-size:12.5px;font-weight:800;color:#1A1A1A;margin-bottom:3px;}
+.support p{font-size:11px;color:#1A3D5C;line-height:1.4;margin-bottom:9px;font-weight:500;}
+.support-btn{display:inline-flex;align-items:center;gap:6px;background:#8B5CB8;color:#fff;padding:8px 14px;border-radius:50px;font-size:11px;font-weight:800;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 12px rgba(139,92,184,0.3);transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;}
+.support-btn svg{width:12px;height:12px;fill:#fff;}
+
+/* CONTACTS FOOTER */
+.contacts{display:flex;align-items:center;justify-content:center;gap:7px;padding:3px 0 0;margin-top:auto;flex-wrap:wrap;}
+.contact-link{display:inline-flex;align-items:center;gap:5px;background:#fff;padding:7px 11px;border-radius:50px;font-size:10.5px;font-weight:700;color:#1A3D5C;text-decoration:none;box-shadow:0 2px 8px rgba(100,150,200,0.12);transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;}
+.contact-link.ig{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 50%,#962fbf 75%,#4f5bd5 100%);color:#fff;box-shadow:0 4px 14px rgba(214,41,118,0.3);}
+.contact-link.ig svg{width:13px;height:13px;fill:#fff;}
+.contact-link.mail svg{width:13px;height:13px;stroke:#7A1F3D;fill:none;stroke-width:2;}
+.tg-btn:hover,.support-btn:hover,.contact-link:hover{transform:translateY(-2px);filter:brightness(1.04);}
+.tg-btn:active,.support-btn:active,.contact-link:active{transform:translateY(0) scale(.97);filter:brightness(.96);box-shadow:0 2px 7px rgba(0,0,0,.16);}
+
+/* DESKTOP ADAPTATION */
+@media (min-width: 900px){
+  body{padding:0;background:#EAF5FD;}
+  .page{max-width:none;width:100%;min-height:100vh;aspect-ratio:auto;border-radius:0;box-shadow:none;padding:36px clamp(28px,6vw,86px) 42px;}
+  .hero h1{font-size:42px;}
+  .hero p{font-size:16px;}
+  .progress{font-size:13px;padding:12px 16px;margin-bottom:18px;}
+  .progress .step .dot{width:20px;height:20px;font-size:12px;}
+  .desk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1120px;width:100%;margin:0 auto;}
+  .card{padding:16px 18px;border-radius:18px;}
+  .card.mail,.card.telegram,.card.support{margin-bottom:0;}
+  .mail-head h2{font-size:20px;}
+  .card.mail p,.howto ol li,.support p,.tg-text-block p{font-size:14px;}
+  .howto h3,.tg-text-block h3,.support h3{font-size:20px;}
+  .mail-icon,.tg-icon{width:42px;height:42px;font-size:22px;}
+  .tg-icon svg{width:22px;height:22px;}
+  .tg-btn,.support-btn{padding:10px 18px;font-size:13px;}
+  .contacts{margin-top:18px;gap:10px;}
+  .contact-link{font-size:12px;padding:9px 14px;}
+      }
+    </style>
+  </head>
+  <body>
+
+<div class="page">
+
+  <div class="hero">
+    <span class="hero-emoji">🎉</span>
+    <h1>Дякуємо!</h1>
+    <p>Залишився останній крок — увійти на платформу.</p>
+  </div>
+
+  <div class="progress">
+    <span class="step"><span class="dot">✓</span>Оплачено</span>
+    <span class="arrow">→</span>
+    <span class="step"><span class="dot">✓</span>Лист надіслано</span>
+    <span class="arrow">→</span>
+    <span class="step pending"><span class="dot">3</span>Увійти</span>
+  </div>
+
+  <div class="desk-grid">
+    <div class="card mail">
+      <div class="mail-head">
+        <div class="mail-icon">📧</div>
+        <h2>Перевірте свою <span class="accent">пошту</span></h2>
+      </div>
+      <p>Ми надіслали вам лист з посиланням на курс і паролем — на ту адресу, яку ви вказали при оплаті.</p>
+      <div class="timing">
+        <span class="clock">⏱</span>
+        Зазвичай приходить за 1-2 хвилини
+      </div>
+    </div>
+
+    <div class="card howto">
+      <h3>Як увійти на курс</h3>
+      <ol>
+        <li>Відкрийте лист на пошті</li>
+        <li>Натисніть кнопку «Увійти на курс»</li>
+        <li>Збережіть пароль для наступних входів</li>
+      </ol>
+      <div class="spam-warning">
+        <span class="icon">⚠️</span>
+        <span>Не бачите листа? Перевірте папки <b>«Спам»</b> і <b>«Промоакції»</b></span>
+      </div>
+    </div>
+
+    <div class="card telegram">
+      <div class="tg-head">
+        <div class="tg-icon">
+          <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224a.67.67 0 0 1 .465.14.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </div>
+        <div class="tg-text-block">
+          <h3>Підстрахуйтеся через <span class="accent">Telegram</span></h3>
+          <p>Бот збереже посилання на курс — зайдете прямо з Telegram, якщо лист загубиться.</p>
+        </div>
+      </div>
+      <a id="plasticinezen-tg-btn" class="tg-btn" href="https://tg.pulse.is/PlasticineZen_bot?start=69e888114656bccfca02e967&email=EMAILVALUE" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0h-.056zm4.962 7.224a.67.67 0 0 1 .465.14.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        Підключити в Telegram
+      </a>
+    </div>
+
+    <div class="card support">
+      <h3>Виникли труднощі?</h3>
+      <p>Напишіть нам у Direct — швидко допоможемо. У робочий час відповідаємо протягом години.</p>
+      <a href="https://ig.me/m/plasticine_zen" target="_blank" rel="noopener" class="support-btn">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Написати в Direct
+      </a>
+    </div>
+  </div>
+
+  <div class="contacts">
+    <a href="https://www.instagram.com/plasticine_zen" target="_blank" rel="noopener" class="contact-link ig">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      @plasticine_zen
+    </a>
+    <a href="mailto:plasticinezen@gmail.com" class="contact-link mail">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      plasticinezen@gmail.com
+    </a>
+  </div>
+
+</div>
+
+  <script src="sendpulse-thankyou-only.js" defer></script>
+  </body>
+</html>

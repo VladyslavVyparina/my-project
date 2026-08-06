@@ -1,0 +1,61 @@
+{% extends "admin_base.html" %}
+{% block title %}Вхід{% endblock %}
+{% block head_extra %}
+<style>
+  .app-frame:has(.login-center) {
+    flex: 1;
+    min-height: 0;
+  }
+  .workspace:has(.login-center) {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .main:has(.login-center) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+</style>
+{% endblock %}
+{% block nav %}
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/admin/login">Pulse <span>CRM</span></a>
+  </div>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="login-center">
+  <div class="login-card">
+    <div class="card card-pad">
+      <h1 class="page-title" style="font-size: 32px; margin-bottom: 8px;">Вхід</h1>
+      <p class="page-sub" style="font-size: 17px; margin-bottom: 28px;">Увійдіть за логіном і паролем адміністратора.</p>
+      {% if error %}
+      <div class="alert">{{ error }}</div>
+      {% endif %}
+      <form method="post" action="/admin/login">
+        <div class="form-row" style="margin-bottom: 14px;">
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="text" name="email" value="{{ default_email or '' }}" required autofocus autocomplete="username">
+          </div>
+        </div>
+        <div class="form-row" style="margin-bottom: 24px;">
+          <div>
+            <label for="password">Пароль</label>
+            <input id="password" type="password" name="password" required autocomplete="current-password">
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width: 100%; min-height: 52px; font-size: 16px;">Увійти</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block footer %}{% endblock %}

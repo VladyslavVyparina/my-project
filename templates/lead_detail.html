@@ -1,0 +1,131 @@
+{% extends "admin_base.html" %}
+{% block title %}Лід #{{ lead.id }}{% endblock %}
+{% block nav_actions %}
+<a class="btn btn-outline" href="/admin/lead/new">+ Новий клієнт</a>
+{% endblock %}
+{% block content %}
+<a class="btn btn-link" href="/admin" style="padding-left: 0; margin-bottom: 20px;">← Назад до списку</a>
+
+<h1 class="page-title" style="font-size: clamp(28px, 4vw, 40px);">{{ lead.name or 'Клієнт' }}</h1>
+<p class="page-sub">Картка #{{ lead.id }} · оновлення та комунікація в одному місці.</p>
+
+<div class="detail-grid">
+  <aside class="card card-pad">
+    <h2 class="card-h" style="font-size: 19px;">Профіль</h2>
+    <div class="kv"><strong>Імʼя</strong>{{ lead.name or '—' }}</div>
+    <div class="kv"><strong>Телефон</strong>{{ lead.phone or '—' }}</div>
+    <div class="kv"><strong>Статус</strong><span class="badge">{{ lead.status }}</span></div>
+    <div class="kv"><strong>Telegram ID</strong>{{ lead.telegram_user_id or '—' }}</div>
+    <div class="kv"><strong>Username</strong>{{ lead.username or '—' }}</div>
+    <div class="kv" style="margin-bottom: 24px;"><strong>Потреби</strong>{{ lead.needs or '—' }}</div>
+    <form id="callForm" method="post" action="/admin/lead/{{ lead.id }}/call" style="margin-bottom: 10px;">
+      <button id="callBtn" class="btn btn-call-dark {% if latest_call and latest_call.status == 'initiated' %}is-calling{% endif %}" type="submit" style="width: 100%;">
+        <svg class="call-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5.5 4.5h3.2l1.4 3.8-2.1 1.5a14.2 14.2 0 0 0 6.2 6.2l1.5-2.1 3.8 1.4v3.2c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 0 1 4 6c0-.8.7-1.5 1.5-1.5Z" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14.5 4.5h5m0 0v5m0-5-6.5 6.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {% if call_in_progress %}
+          Триває дзвінок...
+        {% else %}
+          Вихідний дзвінок
+        {% endif %}
+      </button>
+    </form>
+    <div id="callStatusText" style="font-size:12px;color:var(--text-secondary);margin-bottom:14px;">
+      {% if latest_call %}
+        Статус: {{ latest_call.status }} · {{ latest_call.created_at | dt_kyiv }}
+      {% else %}
+        Статус: ще не було дзвінків
+      {% endif %}
+    </div>
+    {% if admin_user and admin_user.role == "owner" %}
+    <form method="post" action="/admin/lead/{{ lead.id }}/delete" onsubmit="return confirm('Видалити цього ліда? Дію не можна скасувати.');">
+      <button class="btn btn-danger" type="submit" style="width:100%; min-height: 40px;">Видалити ліда</button>
+    </form>
+    {% endif %}
+  </aside>
+
+  <div>
+    <div class="card card-pad" style="margin-bottom: 24px;">
+      <h2 class="card-h">Чат Telegram</h2>
+      <div class="msg-list">
+        {% for msg in lead.chat_messages %}
+        <div class="msg {% if msg.role == 'assistant' %}msg-assistant{% elif msg.role == 'user' %}msg-user{% else %}msg-other{% endif %}">
+          <div class="msg-meta">{{ msg.role }} · {{ msg.source }}</div>
+          {{ msg.content }}
+        </div>
+        {% else %}
+        <p style="color: var(--text-secondary); margin: 0;">Повідомлень ще немає.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="card card-pad">
+      <h2 class="card-h">Дзвінки та транскрипції</h2>
+      {% for call in lead.call_records %}
+      <div class="call-block">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+          <strong style="font-size: 15px;">{{ call.provider }} · {{ call.status }}</strong>
+          <time>{{ call.created_at | dt_kyiv }}</time>
+        </div>
+        <div class="kv" style="margin-bottom: 10px;"><strong>Summary</strong>{{ call.summary or '—' }}</div>
+        <div class="kv" style="margin-bottom: 0;"><strong>Transcript</strong><span style="white-space: pre-wrap; font-size: 14px;">{{ call.transcript or '—' }}</span></div>
+      </div>
+      {% else %}
+      <p style="color: var(--text-secondary); margin: 0;">Записів дзвінків ще немає.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  const form = document.getElementById("callForm");
+  const btn = document.getElementById("callBtn");
+  const txt = document.getElementById("callStatusText");
+  if (!btn || !txt || !form) return;
+
+  form.addEventListener("submit", () => {
+    btn.disabled = true;
+    btn.classList.add("is-calling");
+    btn.innerHTML = `
+      <svg class="call-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5.5 4.5h3.2l1.4 3.8-2.1 1.5a14.2 14.2 0 0 0 6.2 6.2l1.5-2.1 3.8 1.4v3.2c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 0 1 4 6c0-.8.7-1.5 1.5-1.5Z" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M14.5 4.5h5m0 0v5m0-5-6.5 6.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+      Триває дзвінок...
+    `;
+    const now = new Date();
+    const stamp = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
+    txt.textContent = `Статус: initiated · ${stamp}`;
+  });
+
+  let inProgress = btn.textContent.includes("Триває");
+  if (!inProgress) return;
+
+  btn.disabled = true;
+  const interval = setInterval(async () => {
+    try {
+      const res = await fetch("/admin/lead/{{ lead.id }}/call-status", { credentials: "same-origin" });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data || !data.status) return;
+      txt.textContent = `Статус: ${data.status} · ${data.created_at || ""}`.trim();
+      if (!data.in_progress) {
+        btn.disabled = false;
+        btn.classList.remove("is-calling");
+        btn.innerHTML = `
+          <svg class="call-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5.5 4.5h3.2l1.4 3.8-2.1 1.5a14.2 14.2 0 0 0 6.2 6.2l1.5-2.1 3.8 1.4v3.2c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 0 1 4 6c0-.8.7-1.5 1.5-1.5Z" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M14.5 4.5h5m0 0v5m0-5-6.5 6.5" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Вихідний дзвінок
+        `;
+        clearInterval(interval);
+      }
+    } catch (e) {
+      // ignore temporary polling errors
+    }
+  }, 4000);
+})();
+</script>
+{% endblock %}

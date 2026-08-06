@@ -1,0 +1,45 @@
+{% extends "admin_base.html" %}
+{% block title %}Новий клієнт{% endblock %}
+{% block nav_actions %}{% endblock %}
+{% block content %}
+<a class="btn btn-link" href="/admin" style="padding-left: 0; margin-bottom: 20px;">← Назад</a>
+
+<h1 class="page-title" style="font-size: clamp(28px, 4vw, 40px);">Новий клієнт</h1>
+<p class="page-sub">Додайте ліда вручну — дані одразу зʼявляться в CRM.</p>
+
+{% if error %}
+<div class="alert">{{ error }}</div>
+{% endif %}
+
+<div class="card card-pad" style="max-width: 720px;">
+  <form method="post" action="/admin/lead/new">
+    <div class="form-row cols-2">
+      <div>
+        <label for="name">Імʼя</label>
+        <input id="name" type="text" name="name" placeholder="Іван Петренко" autocomplete="name">
+      </div>
+      <div>
+        <label for="phone">Телефон</label>
+        <input id="phone" type="tel" name="phone" placeholder="+380XXXXXXXXX або 380XXXXXXXXX" pattern="[+]?[3][8][0][0-9]{9}" title="Формат: +380XXXXXXXXX або 380XXXXXXXXX" autocomplete="tel">
+      </div>
+    </div>
+    <div class="form-row cols-2">
+      <div>
+        <label for="telegram_user_id">Telegram user id</label>
+        <input id="telegram_user_id" type="text" name="telegram_user_id" value="manual" placeholder="manual">
+      </div>
+      <div>
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username" placeholder="@username">
+      </div>
+    </div>
+    <div class="form-row" style="margin-bottom: 28px;">
+      <div>
+        <label for="needs">Потреби</label>
+        <textarea id="needs" name="needs" rows="5" placeholder="Опишіть запит клієнта"></textarea>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" style="min-width: 200px; min-height: 48px;">Створити картку</button>
+  </form>
+</div>
+{% endblock %}

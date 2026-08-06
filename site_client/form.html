@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Оформлення замовлення · Пластиліновий дзен</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;overflow-x:hidden;}
+body{
+  font-family:'Inter','Segoe UI',Arial,sans-serif;
+  background:#EAF5FD;
+  min-height:100vh;
+  color:#1A1A1A;
+  -webkit-font-smoothing:antialiased;
+  font-size:15px;
+}
+
+.card{
+  width:100%;
+  max-width:420px;
+  margin:0 auto;
+  background:#EAF5FD;
+  padding:18px 18px 28px;
+  position:relative;
+  min-height:100vh;
+}
+
+.card-header{
+  text-align:center;
+  margin-bottom:16px;
+  position:relative;
+  padding-top:8px;
+}
+.close-x{
+  position:absolute;
+  right:-4px;
+  top:0;
+  background:none;
+  border:none;
+  font-size:24px;
+  cursor:pointer;
+  color:#1A1A1A;
+  font-weight:300;
+  line-height:1;
+  padding:6px 10px;
+}
+.card-header h1{
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  color:#1A3D5C;
+  margin-bottom:14px;
+  padding:0 30px;
+}
+.product-name{
+  font-size:24px;
+  font-weight:900;
+  color:#1A1A1A;
+  margin-bottom:4px;
+  letter-spacing:-0.5px;
+  display:inline-flex;
+  align-items:baseline;
+  gap:6px;
+  line-height:1;
+}
+.product-name .dzen{
+  font-family:'Caveat','Georgia',cursive;
+  font-style:italic;
+  font-size:30px;
+  color:#E91E88;
+  font-weight:700;
+  letter-spacing:0;
+  line-height:0.9;
+}
+.product-subtitle{
+  font-size:13px;
+  font-weight:600;
+  color:#1A3D5C;
+  margin-bottom:6px;
+  letter-spacing:0.2px;
+}
+.product-subtitle .num{color:#E91E88;font-weight:800;}
+.product-price{font-size:20px;font-weight:700;color:#E91E88;letter-spacing:0.5px;}
+
+.field-group{margin-bottom:13px;position:relative;}
+.field-label{
+  position:absolute;
+  top:-7px;
+  left:16px;
+  background:#EAF5FD;
+  padding:0 6px;
+  font-size:11px;
+  font-weight:700;
+  color:#E91E88;
+  z-index:1;
+  letter-spacing:0.3px;
+}
+.field-input{
+  width:100%;
+  padding:13px 16px;
+  border:1.5px solid #E91E88;
+  border-radius:14px;
+  font-size:15px;
+  font-family:inherit;
+  background:#fff;
+  color:#1A1A1A;
+  outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.field-input:focus{
+  border-color:#E91E88;
+  border-width:2px;
+  box-shadow:0 0 0 4px rgba(233,30,136,0.15);
+}
+.field-input::placeholder{color:#D9A8C2;}
+
+.email-hint{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin:14px 0 18px;
+  padding:13px 14px;
+  background:#fff;
+  border:2px solid #E91E88;
+  border-radius:14px;
+  box-shadow:0 4px 14px rgba(233,30,136,0.18);
+  position:relative;
+}
+.email-hint::before{
+  content:'';
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:5px;
+  background:#E91E88;
+  border-radius:14px 0 0 14px;
+}
+.email-hint .icon-bubble{
+  flex-shrink:0;
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:#E91E88;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  font-weight:900;
+  box-shadow:0 4px 10px rgba(233,30,136,0.4);
+}
+.email-hint .text{font-size:13px;line-height:1.4;color:#1A1A1A;font-weight:600;}
+.email-hint .text b{color:#E91E88;font-weight:800;}
+
+.divider{border:none;border-top:1px solid #C9D4E0;margin:16px 0;}
+
+.pay-section h2{font-size:16px;font-weight:800;color:#1A1A1A;margin-bottom:8px;}
+.pay-section p{font-size:13.5px;color:#1A3D5C;margin-bottom:12px;font-weight:500;}
+.pay-logos{display:flex;align-items:center;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
+.pay-logos > span{
+  background:#fff;
+  padding:4px 8px;
+  border-radius:6px;
+  display:inline-flex;
+  align-items:center;
+  height:28px;
+  box-shadow:0 1px 3px rgba(0,0,0,0.04);
+  font-size:12px;
+}
+.logo-visa{font-weight:900;font-style:italic;color:#1A1F71;font-size:16px;letter-spacing:-1px;}
+.logo-mc .c1{width:16px;height:16px;border-radius:50%;background:#EB001B;display:inline-block;}
+.logo-mc .c2{width:16px;height:16px;border-radius:50%;background:#F79E1B;display:inline-block;margin-left:-6px;mix-blend-mode:multiply;}
+.logo-gpay{font-weight:600;gap:1px;}
+.logo-gpay .b{color:#4285F4;}
+.logo-gpay .o{color:#EA4335;}
+.logo-gpay .o2{color:#FBBC04;}
+.logo-gpay .g2{color:#4285F4;}
+.logo-gpay .l{color:#34A853;}
+.logo-gpay .e{color:#EA4335;}
+.logo-gpay .pay{margin-left:2px;font-weight:700;color:#1A1A1A;}
+.logo-applepay{font-weight:600;color:#1A1A1A;gap:3px;}
+.logo-applepay svg{width:12px;height:14px;}
+.logo-privat24{font-weight:800;color:#3B9C3B;letter-spacing:-0.3px;}
+.logo-privat24 .green-dot{width:12px;height:12px;background:#3B9C3B;border-radius:3px;display:inline-block;margin-right:4px;position:relative;}
+.logo-privat24 .green-dot::after{content:'';position:absolute;top:3px;left:3px;width:6px;height:6px;background:#fff;border-radius:50%;}
+.logo-mono{font-weight:800;color:#fff!important;letter-spacing:-0.3px;background:#000!important;padding:3px 9px!important;}
+
+.cta-pay{
+  width:100%;
+  background:linear-gradient(135deg,#E91E88,#C01673);
+  color:#fff;
+  border:none;
+  padding:15px 16px;
+  border-radius:50px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  transition:transform 0.15s,box-shadow 0.15s,filter 0.15s;
+  font-family:inherit;
+  box-shadow:0 6px 18px rgba(233,30,136,0.4),inset 0 -2px 5px rgba(0,0,0,0.12);
+  position:relative;
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+.cta-pay::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-20%;
+  width:40%;
+  height:200%;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,0.25),transparent);
+  transform:rotate(20deg);
+}
+.cta-pay:hover{transform:translateY(-2px);filter:brightness(1.04);}
+.cta-pay:active{transform:translateY(1px) scale(.98);filter:brightness(.96);}
+
+.footer-note{text-align:center;font-size:11px;color:#1A3D5C;margin-top:12px;line-height:1.5;}
+.footer-note a{color:#E91E88;text-decoration:underline;font-weight:600;}
+
+.step2{display:none;}
+.step2.active{display:block;}
+.step1.hidden{display:none;}
+
+.pay-quick{display:flex;flex-direction:column;gap:9px;margin-bottom:16px;}
+.pay-quick-btn{
+  width:100%;
+  background:#1A1A1A;
+  color:#fff;
+  border:none;
+  padding:13px 16px;
+  border-radius:50px;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  font-family:inherit;
+  transition:transform 0.15s,filter 0.15s;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+  -webkit-tap-highlight-color:transparent;
+}
+.pay-quick-btn:hover{transform:translateY(-2px);filter:brightness(1.04);}
+.pay-quick-btn:active{transform:translateY(1px) scale(.98);filter:brightness(.96);}
+
+.divider-or{display:flex;align-items:center;gap:10px;margin:18px 0 14px;color:#1A3D5C;font-size:12px;font-weight:600;}
+.divider-or::before,.divider-or::after{content:'';flex:1;height:1px;background:#C9D4E0;}
+
+.brand-strip{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.brand-logos{display:flex;gap:6px;align-items:center;}
+.other-method{
+  background:none;
+  border:none;
+  color:#E91E88;
+  font-weight:700;
+  font-size:12px;
+  cursor:pointer;
+  font-family:inherit;
+  text-decoration:underline;
+}
+
+.card-form{
+  background:#A8DFFF;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 6px 18px rgba(100,150,200,0.18);
+}
+.card-form .row{display:flex;gap:8px;margin-bottom:10px;}
+.card-form .row:last-child{margin-bottom:0;}
+.card-field{flex:1;position:relative;}
+.card-field.full{width:100%;}
+.card-field label{
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  color:#1A3D5C;
+  margin-bottom:4px;
+  letter-spacing:0.3px;
+  text-transform:uppercase;
+}
+.card-field input{
+  width:100%;
+  padding:10px 11px;
+  border:none;
+  border-radius:8px;
+  font-size:14px;
+  font-family:inherit;
+  background:#fff;
+  color:#1A1A1A;
+  outline:none;
+  -webkit-appearance:none;
+}
+.card-field input::placeholder{color:#B5B5B5;}
+.card-field input:focus{box-shadow:0 0 0 2px #E91E88;}
+
+.contact-strip{display:flex;flex-direction:column;gap:13px;margin-bottom:16px;}
+.contact-strip .field-group{margin-bottom:0;}
+
+.back-link{
+  background:none;
+  border:none;
+  color:#1A3D5C;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  margin-bottom:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-family:inherit;
+  padding:6px 0;
+}
+
+.success{display:none;text-align:center;padding:40px 14px;}
+.success.active{display:block;}
+.success .check{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#E91E88,#C01673);
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:36px;
+  box-shadow:0 8px 22px rgba(233,30,136,0.4);
+}
+.success h2{font-size:22px;font-weight:800;margin-bottom:10px;color:#1A1A1A;}
+.success p{font-size:14px;color:#1A3D5C;margin-bottom:5px;line-height:1.5;}
+
+@media (min-width:500px){
+  body{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:20px 0;}
+  .card{
+    min-height:auto;
+    border-radius:24px;
+    box-shadow:0 20px 60px rgba(100,150,200,0.25);
+    margin:0 auto;
+  }
+}
+
+@media (min-width:900px){
+  body{padding:32px 20px;}
+  .card{
+    max-width:1080px;
+    min-height:auto;
+    padding:32px;
+    border-radius:28px;
+  }
+  .card-header{margin-bottom:24px;}
+  .close-x{right:6px;top:4px;}
+  .card-header h1{font-size:13px;margin-bottom:18px;}
+  .product-name{font-size:34px;}
+  .product-name .dzen{font-size:42px;}
+  .product-subtitle{font-size:16px;}
+  .product-price{font-size:24px;}
+
+  #contactForm{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "name pay"
+      "phone pay"
+      "email pay"
+      "hint pay"
+      "divider pay"
+      "button note";
+    gap:14px 24px;
+    align-items:start;
+  }
+  #contactForm .field-group:nth-of-type(1){grid-area:name;}
+  #contactForm .field-group:nth-of-type(2){grid-area:phone;}
+  #contactForm .field-group:nth-of-type(3){grid-area:email;}
+  #contactForm .email-hint{grid-area:hint;margin:0;}
+  #contactForm .divider{grid-area:divider;width:100%;margin:0;}
+  #contactForm .pay-section{grid-area:pay;background:#fff;border-radius:22px;padding:22px;border:1px solid rgba(233,30,136,.18);box-shadow:0 10px 28px rgba(100,150,200,.16);}
+  #contactForm .cta-pay{grid-area:button;align-self:end;}
+  #contactForm .footer-note{grid-area:note;text-align:left;margin-top:0;align-self:center;}
+
+  .pay-section h2{font-size:22px;}
+  .pay-section p{font-size:15px;}
+  .pay-logos{gap:8px;margin-bottom:0;}
+  .pay-logos > span{height:34px;font-size:13px;}
+
+  .step2.active{
+    display:grid;
+    grid-template-columns:minmax(260px,360px) 1fr;
+    grid-template-areas:
+      "head head"
+      "back back"
+      "quick form";
+    gap:16px 28px;
+    align-items:start;
+  }
+  .step2 .card-header{grid-area:head;}
+  .step2 .back-link{grid-area:back;margin-bottom:0;}
+  .step2 .pay-quick{grid-area:quick;margin-bottom:0;}
+  .step2 .divider-or{grid-column:1 / -1;margin:6px 0;}
+  .step2 .brand-strip{grid-column:1 / -1;}
+  #cardForm{grid-area:form;}
+  .card-form{padding:22px;}
+  .card-field input{padding:13px 14px;font-size:15px;}
+  .contact-strip{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;}
+  .success.active{padding:80px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="step1" id="step1">
+    <div class="card-header">
+      <button class="close-x" onclick="closeForm()" aria-label="Закрити">✕</button>
+      <h1>ОФОРМЛЕННЯ ЗАМОВЛЕННЯ</h1>
+      <div class="product-name">Пластиліновий <span class="dzen">дзен</span></div>
+      <div class="product-subtitle"><span class="num">10</span> онлайн уроків</div>
+    </div>
+
+    <form id="contactForm" onsubmit="goToStep2(event)">
+      <div class="field-group">
+        <span class="field-label">Ім'я</span>
+        <input class="field-input" id="name" type="text" required autocomplete="given-name"/>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Телефон</span>
+        <input class="field-input" id="phone" type="tel" placeholder="+380  _ __ __" required autocomplete="tel"/>
+      </div>
+
+      <div class="field-group">
+        <span class="field-label">Email</span>
+        <input class="field-input" id="email" type="email" required autocomplete="email"/>
+      </div>
+
+      <div class="email-hint">
+        <span class="icon-bubble">!</span>
+        <span class="text">Вкажіть <b>коректний email</b> — на нього прийде посилання на курс</span>
+      </div>
+
+      <hr class="divider"/>
+
+      <div class="pay-section">
+        <h2>Способи оплати</h2>
+        <p>Оплата online (WayForPay)</p>
+        <div class="pay-logos">
+          <span class="logo-visa">VISA</span>
+          <span class="logo-mc"><span class="c1"></span><span class="c2"></span></span>
+          <span class="logo-gpay">
+            <span class="b">G</span><span class="o">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span><span class="pay">Pay</span>
+          </span>
+          <span class="logo-applepay">
+            <svg viewBox="0 0 170 170" fill="#1A1A1A" xmlns="http://www.w3.org/2000/svg"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.197-2.12-9.973-3.17-14.34-3.17-4.58 0-9.492 1.05-14.746 3.17-5.262 2.13-9.501 3.24-12.742 3.35-4.929.21-9.842-1.96-14.746-6.52-3.13-2.73-7.045-7.41-11.735-14.04-5.032-7.08-9.169-15.29-12.41-24.65-3.471-10.11-5.211-19.9-5.211-29.378 0-10.857 2.346-20.221 7.045-28.068 3.693-6.303 8.606-11.275 14.755-14.925s12.793-5.51 19.948-5.629c3.915 0 9.049 1.211 15.429 3.591 6.362 2.388 10.443 3.599 12.227 3.599 1.334 0 5.868-1.416 13.55-4.239 7.265-2.618 13.397-3.702 18.428-3.275 13.633 1.1 23.873 6.473 30.668 16.153-12.193 7.386-18.223 17.731-18.103 31.002.11 10.337 3.86 18.939 11.226 25.769 3.338 3.168 7.066 5.616 11.213 7.353-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.66-8.86 22.66-7.12 8.32-15.732 13.13-25.071 12.37-.119-.97-.188-1.99-.188-3.063 0-7.776 3.386-16.1 9.398-22.903 3.002-3.444 6.82-6.307 11.45-8.591 4.62-2.25 8.99-3.494 13.1-3.713.12 1.083.17 2.166.17 3.24z"/></svg>
+            Pay
+          </span>
+          <span class="logo-privat24"><span class="green-dot"></span>Приват24</span>
+          <span class="logo-mono">mono</span>
+        </div>
+      </div>
+
+      <button type="submit" class="cta-pay">Оплатити 299 грн</button>
+
+      <p class="footer-note">
+        Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="index.html#offer" target="_blank">Публічної оферти</a> та <a href="index.html#privacy" target="_blank">Політики конфіденційності</a>.
+      </p>
+    </form>
+  </div>
+
+  <div class="step2" id="step2">
+    <div class="card-header">
+      <button class="close-x" onclick="closeForm()" aria-label="Закрити">✕</button>
+      <h1>ОПЛАТА ЗАМОВЛЕННЯ</h1>
+      <div class="product-name">Пластиліновий <span class="dzen">дзен</span></div>
+      <div class="product-subtitle"><span class="num">10</span> онлайн уроків</div>
+      <div class="product-price">299 грн</div>
+    </div>
+
+    <button type="button" class="back-link" onclick="goToStep1()">← Назад</button>
+
+    <div class="pay-quick">
+      <button type="button" class="pay-quick-btn" onclick="payWith('Apple Pay')">
+        <span>Оплатити з</span>
+        <svg viewBox="0 0 170 170" fill="#fff" width="13" height="15" xmlns="http://www.w3.org/2000/svg"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.197-2.12-9.973-3.17-14.34-3.17-4.58 0-9.492 1.05-14.746 3.17-5.262 2.13-9.501 3.24-12.742 3.35-4.929.21-9.842-1.96-14.746-6.52-3.13-2.73-7.045-7.41-11.735-14.04-5.032-7.08-9.169-15.29-12.41-24.65-3.471-10.11-5.211-19.9-5.211-29.378 0-10.857 2.346-20.221 7.045-28.068 3.693-6.303 8.606-11.275 14.755-14.925s12.793-5.51 19.948-5.629c3.915 0 9.049 1.211 15.429 3.591 6.362 2.388 10.443 3.599 12.227 3.599 1.334 0 5.868-1.416 13.55-4.239 7.265-2.618 13.397-3.702 18.428-3.275 13.633 1.1 23.873 6.473 30.668 16.153-12.193 7.386-18.223 17.731-18.103 31.002.11 10.337 3.86 18.939 11.226 25.769 3.338 3.168 7.066 5.616 11.213 7.353-.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.1-2.96 15.66-8.86 22.66-7.12 8.32-15.732 13.13-25.071 12.37-.119-.97-.188-1.99-.188-3.063 0-7.776 3.386-16.1 9.398-22.903 3.002-3.444 6.82-6.307 11.45-8.591 4.62-2.25 8.99-3.494 13.1-3.713.12 1.083.17 2.166.17 3.24z"/></svg>
+        <span style="font-weight:600;">Pay</span>
+      </button>
+      <button type="button" class="pay-quick-btn" onclick="payWith('Google Pay')">
+        <span>Оплатити з</span>
+        <span style="display:inline-flex;align-items:center;background:#fff;color:#1A1A1A;padding:2px 9px;border-radius:5px;font-weight:700;gap:1px;font-size:13px;">
+          <span style="color:#4285F4;">G</span>Pay
+        </span>
+      </button>
+      <button type="button" class="pay-quick-btn" onclick="payWith('Приват24')" style="background:#3B9C3B;">
+        <span>Оплатити через</span><span style="font-weight:800;">Приват24</span>
+      </button>
+      <button type="button" class="pay-quick-btn" onclick="payWith('mono')" style="background:#000;">
+        <span>Оплатити через</span><span style="font-weight:800;">mono</span>
+      </button>
+    </div>
+
+    <div class="divider-or">або введіть дані картки</div>
+
+    <div class="brand-strip">
+      <div class="brand-logos">
+        <span style="background:#fff;padding:3px 9px;border-radius:6px;font-weight:900;font-style:italic;color:#1A1F71;font-size:16px;letter-spacing:-1px;">VISA</span>
+        <span style="background:#fff;padding:4px 7px;border-radius:6px;display:inline-flex;align-items:center;">
+          <span style="width:16px;height:16px;border-radius:50%;background:#EB001B;"></span>
+          <span style="width:16px;height:16px;border-radius:50%;background:#F79E1B;margin-left:-6px;mix-blend-mode:multiply;"></span>
+        </span>
+      </div>
+      <button type="button" class="other-method" onclick="alert('Інший спосіб оплати — зверніться у підтримку')">Інший спосіб</button>
+    </div>
+
+    <form id="cardForm" onsubmit="submitPayment(event)">
+      <div class="card-form">
+        <div class="row">
+          <div class="card-field full">
+            <label>Номер картки</label>
+            <input id="cardNumber" type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" maxlength="19" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-field">
+            <label>Ім'я на картці</label>
+            <input id="cardName" type="text" placeholder="Ім'я Прізвище" required/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-field">
+            <label>Строк дії</label>
+            <input id="cardExp" type="text" inputmode="numeric" placeholder="ММ/РР" maxlength="5" required/>
+          </div>
+          <div class="card-field">
+            <label>CVV</label>
+            <input id="cardCvv" type="password" inputmode="numeric" placeholder="•••" maxlength="4" required/>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-strip">
+        <div class="field-group">
+          <span class="field-label">Телефон</span>
+          <input class="field-input" id="phone2" type="tel" required/>
+        </div>
+        <div class="field-group">
+          <span class="field-label">Email</span>
+          <input class="field-input" id="email2" type="email" required/>
+        </div>
+      </div>
+
+      <button type="submit" class="cta-pay">Оплатити 299 грн</button>
+
+      <p class="footer-note">
+        🔒 Безпечна оплата · 3D Secure · SSL<br/>
+        Натискаючи на кнопку, ви погоджуєтесь з умовами <a href="index.html#offer" target="_blank">Публічної оферти</a> та <a href="index.html#privacy" target="_blank">Політики конфіденційності</a>.
+      </p>
+    </form>
+  </div>
+
+  <div class="success" id="successScreen">
+    <div class="check">✓</div>
+    <h2>Оплата успішна!</h2>
+    <p>Дякуємо за замовлення</p>
+    <p>Посилання на курс надіслано на email</p>
+  </div>
+
+</div>
+
+<script>
+function goToStep2(e){
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if(!name || !phone || !email){alert('Будь ласка, заповніть усі поля');return;}
+  if(!/^\S+@\S+\.\S+$/.test(email)){alert('Вкажіть коректний email');return;}
+  document.getElementById('phone2').value = phone;
+  document.getElementById('email2').value = email;
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goToStep1(){
+  document.getElementById('step2').classList.remove('active');
+  document.getElementById('step1').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function payWith(method){
+  alert('Перенаправлення на ' + method + '...\n\nУ production-версії тут має запускатися платіжний шлюз WayForPay.');
+  showSuccess();
+}
+
+function submitPayment(e){
+  e.preventDefault();
+  const num = document.getElementById('cardNumber').value.replace(/\s/g,'');
+  if(num.length < 13){alert('Перевірте номер картки');return;}
+  showSuccess();
+}
+
+function showSuccess(){
+  document.getElementById('step1').classList.add('hidden');
+  document.getElementById('step2').classList.remove('active');
+  document.getElementById('successScreen').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(function(){
+    window.location.href = 'https://plasticinezen.com.ua/thank-you';
+  }, 2000);
+}
+
+function closeForm(){
+  if(confirm('Закрити форму оплати?')){window.location.href = 'index.html';}
+}
+
+document.getElementById('cardNumber').addEventListener('input', function(e){
+  let v = e.target.value.replace(/\s/g,'').replace(/[^0-9]/g,'');
+  v = v.match(/.{1,4}/g)?.join(' ') || '';
+  e.target.value = v;
+});
+
+document.getElementById('cardExp').addEventListener('input', function(e){
+  let v = e.target.value.replace(/\D/g,'');
+  if(v.length >= 2) v = v.slice(0,2) + '/' + v.slice(2,4);
+  e.target.value = v;
+});
+
+document.getElementById('cardCvv').addEventListener('input', function(e){
+  e.target.value = e.target.value.replace(/\D/g,'');
+});
+
+function formatPhone(input){
+  input.addEventListener('input', function(e){
+    let v = e.target.value.replace(/\D/g,'');
+    if(v.startsWith('380')) v = v.slice(3);
+    if(v.startsWith('0')) v = v.slice(1);
+    let formatted = '+380';
+    if(v.length > 0) formatted += ' ' + v.slice(0,2);
+    if(v.length > 2) formatted += ' ' + v.slice(2,5);
+    if(v.length > 5) formatted += ' ' + v.slice(5,7);
+    if(v.length > 7) formatted += ' ' + v.slice(7,9);
+    e.target.value = formatted;
+  });
+}
+formatPhone(document.getElementById('phone'));
+formatPhone(document.getElementById('phone2'));
+</script>
+</body>
+</html>

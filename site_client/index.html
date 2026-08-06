@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Пластиліновий дзен — онлайн-курс</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@400;500;600;700;800;900&family=Kalam:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #e91e88;
+      --lav: #c9b8e0;
+      --lav-bg: #f5effb;
+      --blue-soft: #eaf5fd;
+      --cream: #faf6ec;
+      --ink: #1a1a1a;
+      --ink2: #1a3d5c;
+      --muted: #5b4060;
+      --line: #e5ebdf;
+      --yellow: #ffe042;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    @keyframes floatPolaroid {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-8px) rotate(-1.2deg); }
+    }
+    body {
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: #fff;
+      color: var(--ink);
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+    .page-wrap {
+      max-width: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    .page-wrap > * {
+      width: 100%;
+      max-width: none;
+    }
+
+    /* ========== 1. HERO STORIES ========== */
+    .story {
+      width: 100%;
+      max-width: none;
+      aspect-ratio: auto;
+      min-height: 0;
+      background: var(--blue-soft);
+      border-radius: 0;
+      overflow: visible;
+      position: relative;
+      box-shadow: none;
+      padding: 14px 18px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .story > .story-layout {
+      flex: 1;
+      min-height: 0;
+    }
+    .top-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .logo { display: flex; align-items: center; gap: 9px; }
+    .logo-img {
+      width: 40px; height: 40px; border-radius: 50%; overflow: hidden; background: #fff;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(100, 150, 200, 0.2);
+    }
+    .logo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .logo-text .name { font-size: 12px; font-weight: 800; color: var(--ink); }
+    .logo-text .sub {
+      font-family: "Caveat", Georgia, cursive; font-style: italic; font-size: 14px;
+      color: var(--pink); font-weight: 700; margin-top: 1px;
+    }
+    .price-pill {
+      background: var(--pink); color: #fff; padding: 6px 13px; border-radius: 50px;
+      font-size: 11.5px; font-weight: 800; box-shadow: 0 4px 12px rgba(233, 30, 136, 0.4);
+      white-space: nowrap;
+    }
+    .top-tag {
+      align-self: flex-start; display: inline-flex; background: #fff; color: var(--ink2);
+      padding: 5px 12px; border-radius: 50px; font-size: 9.5px; font-weight: 700;
+      align-items: center; gap: 5px; margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(100, 150, 200, 0.12); letter-spacing: 0.3px;
+    }
+    .top-tag .dot { width: 5px; height: 5px; background: var(--pink); border-radius: 50%; }
+    .top-tag .divider { color: #c9d4e0; }
+    .top-tag .access { color: var(--pink); font-weight: 800; }
+    .headline { margin-bottom: 8px; }
+    .headline h1 { font-size: 27px; font-weight: 900; line-height: 0.95; letter-spacing: -0.7px; color: var(--ink); }
+    .headline .dzen-row { display: flex; align-items: center; gap: 7px; margin-top: 2px; flex-wrap: wrap; }
+    .headline .dzen {
+      font-family: "Caveat", Georgia, cursive; font-style: italic; font-size: 32px;
+      color: var(--pink); font-weight: 700; line-height: 0.9;
+    }
+    .headline .tag-highlight {
+      background: var(--yellow); padding: 2px 8px; border-radius: 4px; font-size: 10.5px;
+      font-weight: 700; color: var(--ink); letter-spacing: 0.2px;
+    }
+    .subtitle {
+      margin-bottom: 10px; font-size: 12.5px; color: var(--ink2); line-height: 1.4;
+      font-weight: 600; text-align: left;
+    }
+    .subtitle .num {
+      font-family: "Caveat", Georgia, cursive; font-style: italic; font-size: 24px;
+      color: var(--pink); font-weight: 700; vertical-align: -3px; margin-right: 2px;
+    }
+    .subtitle mark { background: var(--lav); color: #3d1f5c; padding: 1px 6px; border-radius: 4px; font-weight: 800; }
+    .polaroid-wrap { display: flex; justify-content: center; margin: -6px 0 8px; flex-shrink: 0; }
+    .polaroid-hero {
+      width: 210px; background: #fff; padding: 10px 10px 11px; border-radius: 4px;
+      box-shadow: 0 12px 28px rgba(100, 150, 200, 0.2), 0 2px 6px rgba(0, 0, 0, 0.04);
+      position: relative; transform: rotate(-2deg);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      animation: none;
+    }
+    .polaroid-hero:hover {
+      transform: rotate(-1deg) translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 36px rgba(100, 150, 200, 0.35), 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+    .polaroid-hero .tape { position: absolute; top: -6px; width: 50px; height: 14px; opacity: 0.88; border-radius: 1px; }
+    .polaroid-hero .tape-left { background: var(--yellow); left: 20px; transform: rotate(-8deg); }
+    .polaroid-hero .tape-right { background: #a8dfff; right: 20px; transform: rotate(7deg); }
+    .polaroid-hero .polaroid-inner {
+      aspect-ratio: 1 / 1; background: #f4f8fc; border-radius: 2px; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; padding: 0;
+    }
+    .polaroid-hero .polaroid-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .polaroid-caption {
+      text-align: center; margin-top: 7px; display: flex; align-items: center; justify-content: center; gap: 5px;
+    }
+    .polaroid-caption .txt {
+      font-family: "Caveat", Georgia, cursive; font-style: italic; font-size: 16px;
+      color: var(--ink2); font-weight: 700; line-height: 1;
+    }
+    .benefits { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+    .benefit-pill {
+      background: #fff; color: var(--ink2); padding: 7px 12px 7px 10px; border-radius: 50px;
+      font-size: 12.5px; display: flex; align-items: center; gap: 8px; font-weight: 600;
+      line-height: 1.2; box-shadow: 0 2px 8px rgba(100, 150, 200, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease; width: 100%;
+    }
+    .benefit-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(100, 150, 200, 0.18);
+    }
+    .benefit-pill .check-circle { flex-shrink: 0; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+    .benefit-pill .check-circle svg { width: 14px; height: 14px; fill: var(--pink); }
+    .benefit-pill b.b-yellow { color: var(--ink); font-weight: 800; background: var(--yellow); padding: 1px 6px; border-radius: 4px; }
+    .benefit-pill b.b-pink { color: #fff; font-weight: 800; background: var(--pink); padding: 1px 6px; border-radius: 4px; }
+    .benefit-pill b.b-blue { color: var(--ink2); font-weight: 800; background: #a8dfff; padding: 1px 6px; border-radius: 4px; }
+    .benefit-pill b.b-ua {
+      background: linear-gradient(to bottom, #0057b7 50%, #ffd700 50%); color: #fff; font-weight: 800;
+      padding: 1px 6px; border-radius: 4px; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    .benefit-pill b.b-lavender { color: #3d1f5c; font-weight: 800; background: var(--lav); padding: 1px 6px; border-radius: 4px; }
+    .cta-big {
+      background: linear-gradient(135deg, #e91e88, #c01673); color: #fff; border: none;
+      padding: 7px 8px 7px 18px; border-radius: 50px; width: 100%; cursor: pointer;
+      box-shadow: 0 6px 18px rgba(233, 30, 136, 0.45), inset 0 -2px 5px rgba(0, 0, 0, 0.12);
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      position: relative; overflow: hidden; flex-shrink: 0; margin-top: auto; text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta-big:hover {
+      transform: translateY(-2px) scale(1.01);
+      filter: brightness(1.05);
+    }
+    .cta-big:active {
+      transform: translateY(0) scale(0.99);
+      filter: brightness(0.96);
+    }
+    .cta-big .cta-text { font-size: 13px; font-weight: 800; letter-spacing: 0.3px; text-transform: uppercase; display: flex; align-items: center; gap: 7px; }
+    .cta-big .cta-price {
+      background: var(--yellow); color: var(--ink); font-size: 12.5px; font-weight: 900;
+      padding: 6px 12px; border-radius: 50px; letter-spacing: -0.3px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+    }
+
+    /* ========== 2. WHY MOMS ========== */
+    .phone-lav {
+      width: 100%; max-width: none; min-height: 560px; background: var(--lav-bg);
+      border-radius: 0; overflow: hidden; box-shadow: none;
+      padding: 22px 18px; display: flex; flex-direction: column;
+    }
+    .phone-lav h2 {
+      font-size: 27px; font-weight: 900; color: var(--ink); line-height: 1.05; margin-bottom: 18px;
+      letter-spacing: -0.7px; text-align: center;
+    }
+    .phone-lav h2 .cursive { font-family: "Caveat", cursive; color: var(--pink); font-weight: 700; font-size: 44px; line-height: 1; }
+    .reasons { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: space-between; }
+    .reason {
+      background: #fff; border-radius: 20px; padding: 13px 16px; display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 6px 16px rgba(91, 46, 138, 0.14), 0 2px 6px rgba(91, 46, 138, 0.08); position: relative;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .reason:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 10px 24px rgba(91, 46, 138, 0.22), 0 4px 10px rgba(91, 46, 138, 0.12);
+    }
+    .reason:nth-child(odd) { flex-direction: row; margin-right: 14px; transform: rotate(-0.6deg); }
+    .reason:nth-child(even) { flex-direction: row-reverse; margin-left: 14px; transform: rotate(0.6deg); text-align: right; }
+    .reason-icon {
+      flex-shrink: 0; width: 62px; height: 62px; border-radius: 50%; background: #fff;
+      display: flex; align-items: center; justify-content: center; border: 2.5px solid var(--pink);
+      box-shadow: 0 4px 12px rgba(233, 30, 136, 0.25); overflow: hidden;
+    }
+    .reason-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 2px;
+      border-radius: 50%;
+      display: block;
+    }
+    .reason-title { font-size: 13.5px; font-weight: 600; color: var(--ink2); margin-bottom: 3px; }
+    .reason-title b { background: var(--lav); color: #3d1f5c; padding: 1px 7px; border-radius: 5px; font-weight: 800; }
+    .reason-desc { font-size: 11px; color: var(--muted); font-weight: 500; line-height: 1.4; }
+
+    /* ========== 3. PROGRAM ========== */
+    .program-section {
+      width: 100%; max-width: none; background: var(--blue-soft);
+      border-radius: 0; padding: 22px 16px 20px; box-shadow: none;
+    }
+    .program-eyebrow {
+      font-size: 10.5px; font-weight: 800; color: var(--pink); letter-spacing: 2px; text-transform: uppercase;
+      text-align: center; margin-bottom: 10px;
+    }
+    .program-head {
+      font-size: 28px; font-weight: 900; color: var(--ink); line-height: 1.1; text-align: center;
+      margin-bottom: 14px; letter-spacing: -0.6px;
+    }
+    .program-head .hl {
+      background: linear-gradient(transparent 58%, var(--yellow) 58%, var(--yellow) 92%, transparent 92%);
+      padding: 0 4px;
+    }
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .lesson-card {
+      background: #fff; border-radius: 14px; padding: 8px;
+      box-shadow: 0 4px 14px rgba(100, 150, 200, 0.15); border: 1px solid var(--line);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(100, 150, 200, 0.28);
+    }
+    .lesson-card img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 6px;
+    }
+    .lesson-cap {
+      font-family: "Caveat", cursive; font-size: 17px; font-weight: 700; color: var(--ink2);
+      text-align: center; margin-top: 8px; line-height: 1.15;
+    }
+
+    /* ========== 4. MATERIALS ========== */
+    .phone-mat {
+      width: 100%; max-width: none; min-height: 520px; background: var(--lav-bg);
+      border-radius: 0; box-shadow: none;
+      padding: 14px 18px 18px; display: flex; flex-direction: column;
+    }
+    .mat-eyebrow {
+      font-size: 10px; font-weight: 800; color: var(--pink); letter-spacing: 1.8px; text-transform: uppercase;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 7px;
+    }
+    .mat-eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--pink); border-radius: 2px; }
+    .mat-h2 { font-size: 24px; font-weight: 900; color: var(--ink); line-height: 1.05; margin-bottom: 6px; letter-spacing: -0.6px; }
+    .mat-h2 mark { background: var(--yellow); color: var(--ink); padding: 2px 7px; border-radius: 4px; font-weight: 900; }
+    .mat-h2 .cursive { font-family: "Caveat", cursive; color: var(--pink); font-weight: 700; font-size: 30px; }
+    .mat-sub { font-size: 11.5px; color: #3d1f5c; margin-bottom: 12px; font-weight: 600; line-height: 1.4; }
+    .mat-sub mark { background: var(--lav); color: #3d1f5c; padding: 1px 5px; border-radius: 4px; font-weight: 800; }
+    .mat-photo { background: #fff; border-radius: 14px; padding: 6px; margin-bottom: 12px; box-shadow: 0 6px 16px rgba(91, 46, 138, 0.15); }
+    .mat-photo img { width: 100%; height: auto; display: block; border-radius: 8px; }
+    .mat-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; flex: 1; align-content: start; }
+    .mat-card { background: #fff; border-radius: 16px; padding: 11px 13px; box-shadow: 0 4px 12px rgba(91, 46, 138, 0.12); text-align: center; }
+    .mat-card.wide { grid-column: 1 / -1; justify-self: center; width: 88%; }
+    .mat-label {
+      display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: 0.3px; text-transform: uppercase;
+      color: #3d1f5c; padding: 0 4px; margin-bottom: 8px;
+      background: linear-gradient(transparent 55%, var(--lav) 55%, var(--lav) 95%, transparent 95%);
+    }
+    .mat-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+    .mat-list li {
+      position: relative; padding-left: 12px; font-size: 11px; color: #3d1f5c; font-weight: 600;
+      line-height: 1.35; margin-bottom: 3px;
+    }
+    .mat-list li::before { content: "•"; position: absolute; left: 0; top: -1px; color: var(--pink); font-size: 14px; font-weight: 900; }
+    .hand-note { display: block; font-family: "Caveat", cursive; font-size: 12px; color: var(--pink); font-weight: 700; line-height: 1.1; margin-top: 1px; }
+    .ua-flag {
+      display: inline-block; width: 10px; height: 6.5px;
+      background: linear-gradient(to bottom, #0057b7 50%, #ffd700 50%); vertical-align: middle;
+      margin-left: 2px; border-radius: 1px; border: 0.5px solid rgba(0, 0, 0, 0.1);
+    }
+    .mat-note { margin-top: auto; padding-top: 10px; }
+    .mat-note-inner {
+      background: #fff; border: 1.5px solid var(--lav); border-radius: 12px; padding: 9px 12px;
+      display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(91, 46, 138, 0.08);
+    }
+    .mat-note-icon {
+      flex-shrink: 0; width: 32px; height: 32px; background: var(--yellow); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 15px;
+    }
+    .mat-note-text { font-size: 10.5px; color: #3d1f5c; line-height: 1.4; font-weight: 500; }
+    .mat-note-text strong { color: var(--pink); font-weight: 800; }
+    .mat-shop { background: var(--yellow); color: var(--ink); padding: 0 5px; border-radius: 3px; font-weight: 700; }
+
+    /* ========== 5. VIDEO ========== */
+    .phone-video {
+      width: 100%; max-width: none; aspect-ratio: auto; background: var(--blue-soft);
+      border-radius: 0; box-shadow: none;
+      padding: 20px; display: flex; flex-direction: column; justify-content: flex-start;
+    }
+    .vid-top .eyebrow-v {
+      font-size: 10.5px; font-weight: 800; color: var(--pink); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 7px;
+    }
+    .eyebrow-v::before { content: ""; width: 18px; height: 2px; background: var(--pink); border-radius: 2px; }
+    .vid-top h2 { font-size: 30px; font-weight: 900; color: var(--ink); line-height: 1.05; letter-spacing: -0.8px; }
+    .vid-top h2 .cursive { font-family: "Caveat", Georgia, cursive; font-style: italic; color: var(--pink); font-weight: 700; font-size: 36px; }
+    .vid-frame-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8px 0 0; min-height: 0; }
+    .vid-frame {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 280px;
+      border-radius: 20px;
+      overflow: visible;
+      box-shadow: 0 16px 40px rgba(100, 150, 200, 0.35);
+      background: transparent;
+    }
+    .vid-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #0a0a0a;
+      flex-shrink: 0;
+    }
+    .lesson-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+      display: block;
+      z-index: 1;
+    }
+    .vid-play-overlay {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      display: block;
+      background: #0a0a0a;
+      z-index: 3;
+    }
+    .vid-stage.is-playing .vid-play-overlay[hidden] {
+      display: none !important;
+    }
+    .yt-shade {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+      transition: background 0.25s ease;
+    }
+    .vid-play-overlay:hover .yt-shade {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .yt-play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 28px rgba(233, 30, 136, 0.55);
+      pointer-events: none;
+      transition: transform 0.25s ease;
+    }
+    .vid-play-overlay:hover .yt-play {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .yt-play svg {
+      width: 28px;
+      height: 28px;
+      fill: #fff;
+      margin-left: 4px;
+    }
+    .vid-fallback {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 8px 4px 0;
+      margin: 0;
+      color: var(--ink2);
+    }
+    .vid-right {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      gap: 10px;
+    }
+    .vid-notes { display: flex; flex-direction: column; gap: 10px; }
+    .vn {
+      background: #fff; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 4px 14px rgba(91, 46, 138, 0.1);
+    }
+    .vn.l { border: 1.5px solid var(--lav); }
+    .vn.b { border: 1.5px solid #a8dfff; }
+    .vn-ic { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .vn-ic.y { background: var(--yellow); }
+    .vn-ic.bl { background: #a8dfff; }
+    .vn-t { font-size: 11.5px; color: #3d1f5c; line-height: 1.45; font-weight: 500; }
+    .vn-t strong { color: var(--pink); font-weight: 800; }
+    .vn-t mark { background: var(--lav); color: #3d1f5c; padding: 1px 5px; border-radius: 4px; font-weight: 800; }
+
+    /* ========== 6. FINAL CTA ========== */
+    .phone-cta {
+      width: 100%;
+      max-width: none;
+      min-height: 0;
+      background: transparent;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+    .label-card {
+      width: 100%;
+      height: auto;
+      background: #fff;
+      border-radius: 28px;
+      position: relative;
+      padding: 32px 16px 20px;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 48px rgba(100, 150, 200, 0.2), 0 8px 28px rgba(0, 0, 0, 0.06);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .corner-slot { position: absolute; z-index: 5; overflow: hidden; background: #fff; }
+    .corner-slot.top-left {
+      top: 112px;
+      left: calc(50% - 148px);
+      width: 84px;
+      height: 84px;
+      border-radius: 10px;
+      transform: rotate(-5deg);
+      box-shadow: none;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      overflow: visible;
+    }
+    .phone-cta .corner-slot.top-left {
+      display: none;
+    }
+    .corner-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      border-radius: 10px;
+    }
+    .cta-eyebrow { font-size: 11px; font-weight: 800; color: var(--pink); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 12px; }
+    .cta-h2 { font-size: 26px; font-weight: 900; color: var(--ink); line-height: 1.2; margin-bottom: 18px; letter-spacing: -0.5px; }
+    .cta-h2 .cursive { font-family: "Caveat", cursive; color: var(--pink); font-weight: 700; font-size: 30px; }
+    .price-row { display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-bottom: 18px; padding: 8px 0; }
+    .price-big {
+      font-size: 56px; font-weight: 900; color: var(--ink); line-height: 1; letter-spacing: -2px;
+      background: linear-gradient(transparent 55%, var(--yellow) 55%, var(--yellow) 95%, transparent 95%);
+      padding: 0 6px; display: inline-block;
+    }
+    .price-cur { font-family: "Kalam", "Caveat", cursive; font-size: 40px; color: var(--ink); font-weight: 700; transform: rotate(-5deg); display: inline-block; line-height: 0.9; }
+    .inc-list { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; margin: 0 auto 18px; text-align: left; }
+    .inc-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ink); font-weight: 500; line-height: 1.3; }
+    .inc-dot { flex-shrink: 0; width: 9px; height: 9px; background: var(--pink); border-radius: 50%; }
+    .handw { font-family: "Kalam", "Caveat", cursive; font-size: 19px; color: #3d1f5c; font-weight: 700; margin-left: 4px; transform: rotate(-3deg); display: inline-block; }
+    .cta-btn {
+      background: linear-gradient(135deg, #e91e88, #c01673);
+      color: #fff;
+      border: none;
+      padding: 13px 40px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(233, 30, 136, 0.45), inset 0 -2px 5px rgba(0, 0, 0, 0.12);
+      margin-top: auto;
+      align-self: center;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      filter: brightness(1.05);
+    }
+    .cta-btn:active {
+      transform: translateY(0) scale(0.99);
+      filter: brightness(0.96);
+    }
+    .pay-hint { font-size: 10px; color: #999; margin-top: 12px; font-weight: 500; }
+    .pay-hint a { color: var(--pink); font-weight: 700; }
+
+    /* ========== 7. FAQ ========== */
+    .phone-faq {
+      width: 100%; max-width: none; min-height: 520px; background: var(--lav-bg);
+      border-radius: 0; box-shadow: none;
+      padding: 22px 18px; display: flex; flex-direction: column;
+    }
+    .faq-eyebrow {
+      font-size: 10.5px; font-weight: 800; color: var(--pink); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 8px; display: flex; align-items: center; gap: 7px;
+    }
+    .faq-eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--pink); border-radius: 2px; }
+    .faq-h2 { font-size: 27px; font-weight: 900; color: var(--ink); line-height: 1.05; margin-bottom: 14px; letter-spacing: -0.7px; }
+    .faq-h2 .cursive { font-family: "Caveat", cursive; color: var(--pink); font-weight: 700; font-size: 34px; }
+    .faq-list { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: space-between; padding: 4px 0; }
+    .faq-item {
+      background: #fff; border-radius: 16px; padding: 11px 14px; box-shadow: 0 4px 12px rgba(91, 46, 138, 0.12);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .faq-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(91, 46, 138, 0.2);
+    }
+    .faq-q { display: flex; align-items: flex-start; gap: 9px; margin-bottom: 5px; }
+    .faq-q-icon {
+      flex-shrink: 0; width: 20px; height: 20px; background: var(--pink); color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900;
+      box-shadow: 0 2px 6px rgba(233, 30, 136, 0.35);
+    }
+    .faq-q-text { font-size: 12.5px; font-weight: 800; color: #1a3d5c; line-height: 1.3; }
+    .faq-a { font-size: 11px; color: var(--muted); line-height: 1.45; font-weight: 500; padding-left: 29px; }
+    .faq-a mark { background: var(--lav); color: #3d1f5c; padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+    .faq-a .lovin { font-family: "Caveat", cursive; font-size: 14px; color: var(--pink); font-weight: 700; }
+    .faq-footer {
+      margin-top: 10px; background: #fff; border: 1.5px solid var(--lav); border-radius: 14px; padding: 10px 14px;
+      display: flex; align-items: center; gap: 10px; box-shadow: 0 3px 10px rgba(91, 46, 138, 0.1);
+    }
+    .faq-footer-ic {
+      width: 36px; height: 36px; background: var(--yellow); border-radius: 10px; display: flex;
+      align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+    }
+    .faq-footer-t { font-size: 11px; color: #3d1f5c; line-height: 1.4; font-weight: 500; }
+    .faq-footer-t strong { color: var(--pink); font-weight: 800; }
+
+    /* ========== LEGAL ACCORDION + PAYMENT ========== */
+    .legal-wrap {
+      width: 100%;
+      max-width: 860px;
+      margin: 34px auto 0;
+      padding: 0 10px;
+    }
+    .legal-item {
+      background: #fff; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 10px; overflow: hidden;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .legal-item[open] {
+      box-shadow: 0 8px 22px rgba(91, 46, 138, 0.12);
+      border-color: var(--lav);
+    }
+    .legal-summary {
+      list-style: none; cursor: pointer; font-size: 14px; font-weight: 700; padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--ink2);
+    }
+    .legal-summary::-webkit-details-marker { display: none; }
+    .legal-summary::after { content: "+"; font-size: 22px; color: var(--pink); line-height: 1; }
+    .legal-item[open] .legal-summary::after { content: "−"; }
+    .legal-content { padding: 0 16px 16px; font-size: 13px; color: #333; border-top: 1px solid var(--line); padding-top: 12px; }
+    .legal-content p { margin-bottom: 10px; }
+
+    .pay-sum-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pay-shield {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #2e7d32;
+    }
+    .pay-shield svg {
+      width: 24px;
+      height: 24px;
+    }
+    .pay-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      align-content: center;
+      gap: 10px 8px;
+      margin-bottom: 12px;
+    }
+    .pay-logos > svg {
+      height: 26px;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .pay-logos img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    .pay-logos-card {
+      width: clamp(96px, 14vw, 128px);
+    }
+    .liqpay-logo {
+      width: 62px;
+      height: auto;
+      display: block;
+    }
+    .pay-visa-lockup {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 8px;
+      min-height: 30px;
+      line-height: 0;
+    }
+    .pay-visa-glyph {
+      flex-shrink: 0;
+      display: block;
+      height: 26px;
+      width: auto;
+    }
+    .pay-visa-word {
+      font-size: 15px;
+      font-weight: 900;
+      color: #1a1f71;
+      letter-spacing: 0.04em;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 26px;
+      display: inline-block;
+    }
+    .pay-mark {
+      display: inline-flex;
+      align-items: center;
+      align-self: center;
+      gap: 3px;
+      min-height: 30px;
+      height: 30px;
+      padding: 0 8px 0 5px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      box-sizing: border-box;
+    }
+    .pay-mark svg { flex-shrink: 0; display: block; }
+    .pay-mark-txt {
+      font-size: 13px;
+      font-weight: 600;
+      color: #000;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .pay-mark-google .pay-mark-txt {
+      font-weight: 500;
+      color: #5f6368;
+    }
+    .pay-mark-apple {
+      color: #000;
+    }
+    .pay-text { font-size: 12px; color: #555; line-height: 1.5; }
+    #payment > .legal-summary {
+      pointer-events: none;
+      cursor: default;
+    }
+    #payment > .legal-summary::after {
+      content: "";
+    }
+
+    .ig-footer {
+      display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0 0;
+    }
+    .ig-link {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink);
+      font-weight: 700; font-size: 14px; padding: 10px 18px; background: #fff; border-radius: 50px;
+      border: 1px solid var(--line); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    }
+    .ig-link:hover {
+      transform: translateY(-2px) scale(1.01);
+      filter: brightness(1.04);
+    }
+    .ig-link:active {
+      transform: translateY(0) scale(0.97);
+      filter: brightness(0.96);
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.14);
+    }
+    .ig-link svg { width: 28px; height: 28px; }
+    .ig-link img { width: 24px; height: 24px; display: block; }
+
+    .story-layout {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      gap: 14px;
+    }
+    .story-main {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+    .story-aside {
+      display: none;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .polaroid-mobile {
+      display: flex;
+      justify-content: center;
+      margin: 6px 0 20px;
+    }
+
+    /* ========== DESKTOP & TABLET ========== */
+    @media (min-width: 640px) {
+      .page-wrap {
+        max-width: none;
+        width: 100%;
+        padding: 0;
+        gap: 0;
+      }
+      .program-section,
+      .legal-wrap,
+      .phone-cta,
+      .phone-faq {
+        max-width: 600px;
+      }
+      .lesson-grid {
+        gap: 14px;
+      }
+      .lesson-cap {
+        font-size: 18px;
+      }
+      .program-head {
+        font-size: 32px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .page-wrap {
+        max-width: none;
+        width: 100%;
+        padding: 0;
+        gap: 0;
+      }
+
+      .story {
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: auto;
+        min-height: 0;
+        padding: 28px 36px 32px;
+        flex-direction: column;
+      }
+      .story-layout {
+        flex-direction: row;
+        align-items: center;
+        gap: 32px 40px;
+      }
+      .story-main {
+        flex: 1;
+        min-width: 0;
+      }
+      .story-aside {
+        display: flex;
+        flex: 0 0 clamp(280px, 32vw, 360px);
+        width: clamp(280px, 32vw, 360px);
+        position: sticky;
+        top: 24px;
+      }
+      .polaroid-wrap {
+        margin: 0;
+      }
+      .polaroid-mobile {
+        display: none;
+      }
+      .polaroid-hero {
+        width: 100%;
+        max-width: 320px;
+      }
+      .headline h1 {
+        font-size: 34px;
+      }
+      .headline .dzen {
+        font-size: 38px;
+      }
+      .subtitle {
+        font-size: 15px;
+      }
+      .benefits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .benefit-pill {
+        font-size: 13px;
+      }
+
+      .phone-lav {
+        max-width: 100%;
+        width: 100%;
+        min-height: 0;
+        padding: 28px 32px 32px;
+      }
+      .phone-lav h2 {
+        font-size: 32px;
+        margin-bottom: 22px;
+      }
+      .phone-lav h2 .cursive {
+        font-size: 52px;
+      }
+      .reasons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 18px;
+        justify-content: stretch;
+      }
+      .reason:nth-child(odd),
+      .reason:nth-child(even) {
+        margin-left: 0;
+        margin-right: 0;
+        transform: none;
+        flex-direction: row;
+        text-align: left;
+      }
+      .reason-title {
+        font-size: 15px;
+      }
+      .reason-desc {
+        font-size: 12.5px;
+      }
+      .benefit-pill br.mobile-break {
+        display: none;
+      }
+      .reason:hover {
+        transform: translateY(-4px) scale(1.02) !important;
+      }
+
+      .program-section {
+        max-width: 100%;
+        width: 100%;
+        padding: 28px 32px 28px;
+      }
+      .lesson-grid {
+        gap: 16px;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      /* 10 уроків у 4 колонки: останні 2 — центруємо в колонки 2 і 3 */
+      .lesson-card:nth-last-child(2):nth-child(4n + 1) { grid-column: 2; }
+
+      .phone-mat {
+        max-width: 100%;
+        width: 100%;
+        min-height: 0;
+        padding: 24px 32px 28px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas:
+          "me me"
+          "mh mh"
+          "ms ms"
+          "mp mg"
+          "mn mn";
+        column-gap: 24px;
+        row-gap: 12px;
+      }
+      .phone-mat .mat-eyebrow { grid-area: me; }
+      .phone-mat .mat-h2 { grid-area: mh; }
+      .phone-mat .mat-sub { grid-area: ms; }
+      .phone-mat .mat-photo {
+        grid-area: mp;
+        margin-bottom: 0;
+        align-self: start;
+      }
+      .phone-mat .mat-groups {
+        grid-area: mg;
+        align-self: start;
+      }
+      .phone-mat .mat-note {
+        grid-area: mn;
+        padding-top: 16px;
+      }
+      .mat-card.wide {
+        width: 100%;
+      }
+      .mat-h2 {
+        font-size: 28px;
+      }
+      .mat-list li {
+        font-size: 12px;
+      }
+
+      .phone-video {
+        max-width: 100%;
+        width: 100%;
+        aspect-ratio: auto;
+        min-height: 0;
+        padding: 28px 32px;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 28px;
+      }
+      .phone-video .vid-top {
+        flex: 0 0 34%;
+        max-width: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+      .phone-video .vid-frame-wrap {
+        flex: 1;
+        padding: 0;
+        min-height: 320px;
+      }
+      .vid-frame {
+        max-width: none;
+        width: 100%;
+      }
+      .vid-stage {
+        max-height: min(70vh, 520px);
+        width: 100%;
+      }
+      .vid-stage .lesson-video {
+        min-height: 100%;
+        height: 100%;
+      }
+      .phone-video .vid-notes {
+        flex-direction: row;
+        gap: 12px;
+      }
+      .vid-right {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .vn {
+        flex: 1;
+      }
+      .vn-t {
+        font-size: 12px;
+      }
+
+      .phone-cta {
+        max-width: 100%;
+        width: 100%;
+        min-height: 0;
+        padding: 28px 32px 32px;
+      }
+      .label-card {
+        height: auto;
+        min-height: 0;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 32px 28px 28px;
+      }
+      .corner-slot.top-left {
+        display: flex;
+        width: 120px;
+        height: 120px;
+        top: -14px;
+        left: -14px;
+      }
+      .corner-slot.top-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .price-big {
+        font-size: 64px;
+      }
+
+      .phone-faq {
+        max-width: 100%;
+        width: 100%;
+        min-height: 0;
+        padding: 28px 32px 32px;
+      }
+      .faq-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        flex: none;
+      }
+      .faq-item {
+        height: 100%;
+      }
+      .faq-h2 {
+        font-size: 32px;
+      }
+      .faq-q-text {
+        font-size: 13px;
+      }
+      .faq-a {
+        font-size: 12px;
+      }
+      .phone-faq .faq-footer {
+        margin-top: 16px;
+      }
+
+      .legal-wrap {
+        max-width: 800px;
+      }
+      .legal-summary {
+        font-size: 15px;
+        padding: 16px 20px;
+      }
+      .legal-content {
+        font-size: 14px;
+        padding: 0 20px 20px;
+      }
+      .pay-text {
+        font-size: 13px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .page-wrap {
+        max-width: none;
+        width: 100%;
+      }
+      .lesson-grid {
+        gap: 18px;
+      }
+      .program-head {
+        font-size: 36px;
+      }
+      .reasons {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .polaroid-hero {
+        animation: none;
+      }
+      .polaroid-hero:hover {
+        transform: rotate(-2deg);
+      }
+      .benefit-pill,
+      .faq-item,
+      .lesson-card,
+      .legal-item,
+      .cta-btn,
+      .cta-big,
+      .reason,
+      .vid-play-overlay .yt-shade,
+      .yt-play {
+        transition: none !important;
+      }
+      .benefit-pill:hover,
+      .faq-item:hover,
+      .lesson-card:hover,
+      .reason:hover {
+        transform: none !important;
+      }
+      .cta-btn:hover,
+      .cta-big:hover,
+      .cta-btn:active,
+      .cta-big:active {
+        transform: none;
+        filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- 1. HERO -->
+    <section class="story" id="block-1">
+      <div class="story-layout">
+        <div class="story-main">
+      <div class="top-header">
+        <div class="logo">
+          <div class="logo-img">
+            <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/logo.jpg" alt="PlasticineZen" />
+          </div>
+          <div class="logo-text">
+            <div class="name">Пластиліновий</div>
+            <div class="sub">дзен</div>
+          </div>
+        </div>
+        <div class="price-pill">299 грн</div>
+      </div>
+      <div class="top-tag">
+        <span class="dot"></span>
+        Онлайн-курс
+        <span class="divider">·</span>
+        <span class="access">Доступ 1 рік</span>
+      </div>
+      <div class="headline">
+        <h1>Пластиліновий</h1>
+        <div class="dzen-row">
+          <span class="dzen">дзен</span>
+          <span class="tag-highlight">детокс від гаджетів</span>
+        </div>
+      </div>
+      <div class="subtitle">
+        <span class="num">10</span> затишних онлайн-уроків, <mark>малювання пластиліном</mark>, які дарують дитині <mark>радість</mark> від творчості
+      </div>
+      <div class="polaroid-mobile">
+        <div class="polaroid-hero">
+          <span class="tape tape-left"></span>
+          <span class="tape tape-right"></span>
+          <div class="polaroid-inner">
+            <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/блок 1.jpg" alt="Роботи дитини" />
+          </div>
+          <div class="polaroid-caption">
+            <span class="txt">моя виставка в кімнаті</span>
+            <span>🌸</span>
+          </div>
+        </div>
+      </div>
+      <div class="benefits">
+        <div class="benefit-pill">
+          <span class="check-circle"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+          Творчий <b class="b-yellow">антистрес</b>
+        </div>
+        <div class="benefit-pill">
+          <span class="check-circle"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+          <b class="b-pink">Лагідна</b> заміна гаджетам
+        </div>
+        <div class="benefit-pill">
+          <span class="check-circle"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+          Тренуємо <b class="b-blue">мозок</b> через пальчики
+        </div>
+        <div class="benefit-pill">
+          <span class="check-circle"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+          <span><b class="b-pink">Повітряний</b> пластилін <b class="b-ua">українського</b><br/>виробника</span>
+        </div>
+        <div class="benefit-pill">
+          <span class="check-circle"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+          Легко <b class="b-lavender">прибрати</b> після творчості
+        </div>
+      </div>
+      <a class="cta-big" href="#final-cta">
+        <span class="cta-text">Отримати доступ <span>→</span></span>
+        <span class="cta-price">299 грн</span>
+      </a>
+        </div>
+        <div class="story-aside">
+      <div class="polaroid-wrap">
+        <div class="polaroid-hero">
+          <span class="tape tape-left"></span>
+          <span class="tape tape-right"></span>
+          <div class="polaroid-inner">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/блок 1.jpg" alt="Роботи дитини" />
+          </div>
+          <div class="polaroid-caption">
+            <span class="txt">моя виставка в кімнаті</span>
+            <span>🌸</span>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WHY MOMS -->
+    <section class="phone-lav" id="block-2">
+      <h2>Чому мами<br /><span class="cursive">обирають нас</span></h2>
+      <div class="reasons">
+        <div class="reason">
+          <div class="reason-icon"><img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/divchyna.jpg" alt="" style="padding:0;transform:scale(1.45);" /></div>
+          <div>
+            <div class="reason-title">Справжній <b>антистрес</b></div>
+            <div class="reason-desc">Лагідний вихід з віртуального світу, спокій для нервової системи</div>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon"><img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/serce.jpg" alt="" /></div>
+          <div>
+            <div class="reason-title">Теплий <b>сімейний ритуал</b></div>
+            <div class="reason-desc">Спільний час без екранів, що зближує маму й дитину</div>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon"><img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/mozok.jpg" alt="" /></div>
+          <div>
+            <div class="reason-title"><b>Інтелект</b> через кінчики пальців</div>
+            <div class="reason-desc">Моторика розвиває мовлення, логіку, пам'ять і почерк</div>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon"><img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/kybok.jpg" alt="" style="padding:0;transform:scale(1.45);" /></div>
+          <div>
+            <div class="reason-title"><b>Результат</b>, яким пишаються</div>
+            <div class="reason-desc">«Я це зробив!» — картина на стіні замість часу в телефоні</div>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon"><img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/blyskavka.jpg" alt="" /></div>
+          <div>
+            <div class="reason-title"><b>Концентрація</b> і посидючість</div>
+            <div class="reason-desc">Повертає навичку глибокої уваги після гаджетів</div>
+          </div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon"><img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/acvarel.jpg" alt="" /></div>
+          <div>
+            <div class="reason-title">Відчуття <b>кольору та об'єму</b></div>
+            <div class="reason-desc">Малювання об'ємом — крок далі від звичайних фарб</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROGRAM -->
+    <section class="program-section" id="block-3">
+      <div class="program-eyebrow">Програма курсу</div>
+      <div class="program-head"><span class="hl">10 детальних</span> онлайн уроків</div>
+      <div class="lesson-grid">
+        <!-- Квадратні -->
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/1.jpg" alt="" />
+          <div class="lesson-cap">Щасливий ведмедик</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/8.jpg" alt="" />
+          <div class="lesson-cap">Карамельний котик</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/6.jpg" alt="" />
+          <div class="lesson-cap">Кактус модник</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/9.jpg" alt="" />
+          <div class="lesson-cap">Квітковий кексик</div>
+        </article>
+        <!-- Широкі -->
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/4.jpg" alt="" />
+          <div class="lesson-cap">Монстрики друзі</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/7.jpg" alt="" />
+          <div class="lesson-cap">М'ятний равлик</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/2.jpg" alt="" />
+          <div class="lesson-cap">Закохані рибки</div>
+        </article>
+        <!-- Вертикальні -->
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/3.jpg" alt="" />
+          <div class="lesson-cap">Ніжні квіти</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/10.jpg" alt="" />
+          <div class="lesson-cap">Весела грушка</div>
+        </article>
+        <article class="lesson-card">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Нові фото/5.jpg" alt="" />
+          <div class="lesson-cap">Ягідне морозиво</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. MATERIALS -->
+    <section class="phone-mat" id="block-4">
+      <div class="mat-eyebrow">Набір для творчості</div>
+      <h2 class="mat-h2">Все, що <mark>потрібно</mark><br /><span class="cursive">для уроку</span></h2>
+      <p class="mat-sub">Прості <mark>знайомі</mark> матеріали — не треба купувати дорогого</p>
+      <div class="mat-photo">
+        <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/ліпка.jpg" alt="Матеріали для уроку" />
+      </div>
+      <div class="mat-groups">
+        <div class="mat-card">
+          <span class="mat-label">Пластилін</span>
+          <ul class="mat-list">
+            <li>Повітряний Play Clay<span class="ua-flag"></span></li>
+            <li>Повітряний Lovin<span class="ua-flag"></span><span class="hand-note">приємний на дотик,<br />неймовірна палітра</span></li>
+            <li>Китайський для деталей</li>
+          </ul>
+        </div>
+        <div class="mat-card">
+          <span class="mat-label">Основа</span>
+          <ul class="mat-list">
+            <li>Акварельний папір А4</li>
+            <li>Дошка для пластиліну</li>
+          </ul>
+        </div>
+        <div class="mat-card wide">
+          <span class="mat-label">Інструменти</span>
+          <ul class="mat-list">
+            <li>лінійка, маркер, олівець, клей</li>
+            <li>ножиці, стеки, зубочистка, гумка</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mat-note">
+        <div class="mat-note-inner">
+          <div class="mat-note-icon">💡</div>
+          <div class="mat-note-text">
+            <strong>Підказка для мам:</strong> весь набір можна зібрати за 1 похід у <span class="mat-shop">«Аврорі»</span> або замовити одним кошиком на <strong>Rozetka / Prom</strong>.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. VIDEO -->
+    <section class="phone-video" id="block-5">
+      <div class="vid-top">
+        <div class="eyebrow-v">Як проходить урок</div>
+        <h2>Подивіться<br /><span class="cursive">на власні очі</span></h2>
+      </div>
+      <div class="vid-right">
+        <div class="vid-frame-wrap">
+          <div class="vid-frame" id="vid-player-box">
+            <div class="vid-stage" id="vid-stage">
+              <video
+                id="lesson-video"
+                class="lesson-video"
+                src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Прикладуроку.mp4"
+                playsinline
+                preload="metadata"
+              ></video>
+              <button type="button" class="vid-play-overlay" id="vid-play-btn" aria-label="Увімкнути відео">
+                <span class="yt-shade" aria-hidden="true"></span>
+                <span class="yt-play" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="vid-notes">
+          <div class="vn l">
+            <div class="vn-ic y">💡</div>
+            <div class="vn-t"><strong>Нагадуємо:</strong> запис уроку залишається у вас <mark style="white-space:nowrap;">на&nbsp;1&nbsp;рік</mark> — можна передивлятися.</div>
+          </div>
+          <div class="vn b">
+            <div class="vn-ic bl">💧</div>
+            <div class="vn-t"><strong>Лайфхак для мам:</strong> якщо пластилін прилип до одягу — <strong>легко відпирається водою, після замочування</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FINAL CTA -->
+    <section class="phone-cta" id="final-cta">
+      <div class="label-card">
+        <div class="corner-slot top-left">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/kvity.jpg" alt="" />
+        </div>
+        <div class="cta-eyebrow">Повний курс</div>
+        <h2 class="cta-h2">Почніть <span class="cursive">цифровий детокс</span> сьогодні</h2>
+        <div class="price-row">
+          <span class="price-big">299</span><span class="price-cur">грн</span>
+        </div>
+        <div class="inc-list">
+          <div class="inc-item"><span class="inc-dot"></span><div>10 детальних онлайн-уроків</div></div>
+          <div class="inc-item"><span class="inc-dot"></span><div>доступ до матеріалів <span class="handw">на 1 рік</span></div></div>
+          <div class="inc-item"><span class="inc-dot"></span><div>перелік що необхідне для уроку</div></div>
+        </div>
+        <a class="cta-btn" href="https://plasticinezen.com.ua/form">Купити</a>
+        <p class="pay-hint">
+          Оформлюючи замовлення, Ви погоджуєтеся з умовами
+          <a href="#offer">Оферти</a> та <a href="#privacy">Політики конфіденційності</a>.
+        </p>
+        <p class="pay-hint">Оплата карткою · WayForPay · доступ одразу</p>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="phone-faq" id="block-7">
+      <div class="faq-eyebrow">FAQ</div>
+      <h2 class="faq-h2">Часті<br /><span class="cursive">запитання</span></h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-icon">?</div>
+            <div class="faq-q-text">З якого віку підходить курс?</div>
+          </div>
+          <div class="faq-a">Курс розрахований на дітей <mark>від 7 років</mark>. Для молодших — з допомогою батьків.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-icon">?</div>
+            <div class="faq-q-text">Скільки триває один урок?</div>
+          </div>
+          <div class="faq-a">Уроки різні за тривалістю — <mark>від 30 до 60 хвилин</mark>. Дитина може робити паузи та повертатися.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-icon">?</div>
+            <div class="faq-q-text">Який пластилін потрібен?</div>
+          </div>
+          <div class="faq-a">
+            Повітряний пластилін, який вам подобається. Рекомендую українського виробника
+            <mark>Lovin<span class="ua-flag"></span></mark> — <span class="lovin">особливий на дотик, з неймовірною палітрою кольорів</span>.
+            Також <mark>Play Clay<span class="ua-flag"></span></mark>. Китайський — для деталей.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">
+            <div class="faq-q-icon">?</div>
+            <div class="faq-q-text">Як отримати доступ після оплати?</div>
+          </div>
+          <div class="faq-a">Доступ приходить <mark>одразу після оплати</mark> на електронну пошту. За бажанням — також у Telegram.</div>
+        </div>
+      </div>
+      <div class="faq-footer">
+        <div class="faq-footer-ic">💬</div>
+        <div class="faq-footer-t"><strong>Є ще питання?</strong> Напишіть у Direct — відповім особисто.</div>
+      </div>
+    </section>
+
+    <!-- LEGAL + PAYMENT + INSTAGRAM -->
+    <div class="legal-wrap" id="legal-footer">
+      <details class="legal-item" id="offer">
+        <summary class="legal-summary">ПУБЛІЧНА ОФЕРТА (ДОГОВІР КУПІВЛІ-ПРОДАЖУ ЦИФРОВОГО КОНТЕНТУ)</summary>
+        <div class="legal-content">
+          <p><em>Продавець залишає за собою право оновлювати оферту.</em></p>
+          <p><strong>0. ЗАГАЛЬНІ ПОЛОЖЕННЯ</strong></p>
+          <p>0.1. Цей документ є офіційною публічною офертою (далі — Оферта) ФОП Прокопюк Валентина Петровича (далі — Продавець), укладеною з будь-якою фізичною особою (далі — Покупець), яка прийняла умови цієї Оферти.</p>
+          <p>0.2. Прийняттям (акцептом) цієї Оферти є оплата Покупцем вартості курсу через платіжну систему WayForPay. З моменту здійснення оплати договір між Продавцем і Покупцем вважається укладеним на умовах цієї Оферти.</p>
+          <p>0.3. Цей договір укладається відповідно до законодавства України, зокрема Законів України «Про захист прав споживачів», «Про електронну комерцію», «Про цифровий контент та цифрові послуги», «Про захист персональних даних».</p>
+          <p><strong>1. ПРЕДМЕТ ДОГОВОРУ</strong></p>
+          <p>1.1. Продавець надає Покупцеві платний доступ до онлайн-курсу відеоуроків із малювання картин із пластиліну під назвою «Пластиліновий дзен» (далі — Курс) через платформу SendPulse.</p>
+          <p>1.2. Доступ до Курсу надається після повної оплати його вартості Покупцем.</p>
+          <p>1.3. Вартість Курсу та умови доступу зазначаються на сторінці продажу за адресою plasticinezen.com.ua. Усі ціни вказані в національній валюті України (гривня) і включають усі обов'язкові податки відповідно до законодавства.</p>
+          <p>1.4. Строк доступу до Курсу — 12 місяців з моменту оплати.</p>
+          <p><strong>2. ПОРЯДОК ОПЛАТИ</strong></p>
+          <p>2.1. Оплата здійснюється через платіжну систему WayForPay, яка підтримує оплату картами будь-яких банків (зокрема ПриватБанк, Монобанк), Apple Pay та Google Pay.</p>
+          <p>2.2. Моментом виконання зобов'язання Покупця щодо оплати є успішне списання коштів, підтверджене платіжною системою.</p>
+          <p>2.3. Усі ціни вказані в гривнях і включають усі обов'язкові податки відповідно до законодавства України.</p>
+          <p><strong>3. ПОРЯДОК НАДАННЯ ПОСЛУГ</strong></p>
+          <p>3.1. Після успішної оплати Покупець отримує автоматичне повідомлення на вказаний при оплаті Email з посиланням на доступ до особистого кабінету на платформі SendPulse. Доступ надається миттєво або протягом 24 годин після підтвердження оплати.</p>
+          <p>3.2. Послуга вважається наданою в повному обсязі в момент надсилання даних для доступу до Курсу на електронну адресу Покупця.</p>
+          <p>3.3. Покупець несе повну відповідальність за коректність введення електронної адреси при оплаті. У разі помилки в адресі Покупець може звернутися на email <a href="mailto:plasticinezen@gmail.com">plasticinezen@gmail.com</a> для відновлення доступу. Продавець не несе відповідальності за неотримання доступу через помилку Покупця при введенні даних.</p>
+          <p><strong>4. ВІДМОВА ВІД ПОСЛУГИ ТА ПОВЕРНЕННЯ КОШТІВ</strong></p>
+          <p>4.1. Регулювання відносин, пов'язаних із поверненням коштів за Послуги, здійснюється відповідно до Законів України «Про захист прав споживачів», «Про електронну комерцію» та «Про цифровий контент та цифрові послуги». Покупець не має права відмовитися від договору про надання цифрового контенту, який не надається на матеріальному носії, якщо надання контенту розпочато за попередньою згодою Покупця та з його підтвердженням того, що він втрачає право на відмову.</p>
+          <p>4.2. Оплата вартості Послуг Покупцем одночасно є: попередньою згодою на негайний початок надання цифрового контенту; підтвердженням обізнаності Покупця про втрату права на відмову від договору та повернення коштів з моменту надання доступу.</p>
+          <p>4.3. Моментом надання Послуги вважається момент надсилання на електронну адресу Покупця даних для доступу до навчальних матеріалів, незалежно від того, чи скористався Покупець цим доступом фактично.</p>
+          <p>4.4. До моменту надання доступу Покупець має право відмовитися від договору та отримати повернення коштів у повному обсязі, надіславши заяву на email: <a href="mailto:plasticinezen@gmail.com">plasticinezen@gmail.com</a>.</p>
+          <p>4.5. У разі технічної неможливості надання Послуг з вини Виконавця (платформа SendPulse недоступна понад 7 діб поспіль і це не вирішується) Покупець має право на повернення коштів пропорційно до недоступного періоду або в повному обсязі — за домовленістю сторін.</p>
+          <p><strong>5. ІНТЕЛЕКТУАЛЬНА ВЛАСНІСТЬ ТА ПРАВИЛА КОРИСТУВАННЯ</strong></p>
+          <p>5.1. Усі авторські права на відеоуроки та зображення, розміщені на сайті та платформі SendPulse, належать Продавцю.</p>
+          <p>5.2. Покупцеві надається неексклюзивне право на перегляд контенту в особистих цілях без права на його копіювання, завантаження, тиражування чи поширення.</p>
+          <p>5.3. Передача доступу (логіну та паролю) до особистого кабінету третім особам суворо заборонена. У разі виявлення факту поширення контенту або передачі доступу іншим особам Продавець має право заблокувати доступ до Курсу без повернення коштів.</p>
+          <p>5.4. Запис екрана, копіювання, завантаження або інше відтворення відеоуроків з метою подальшого поширення (у будь-якій формі — особисте збереження для передачі іншим особам, публікація в соцмережах, у месенджерах, на торентах тощо) суворо заборонені і є порушенням авторських прав. У разі виявлення такого порушення Продавець залишає за собою право вимагати компенсацію відповідно до законодавства України про авторське право.</p>
+          <p><strong>6. ВІДПОВІДАЛЬНІСТЬ СТОРІН ТА ОБСТАВИНИ НЕПЕРЕБОРНОЇ СИЛИ</strong></p>
+          <p>6.1. Продавець не несе відповідальності за технічні проблеми на стороні Покупця, які перешкоджають перегляду Курсу: відсутність або нестабільність інтернет-з'єднання, несумісність пристрою, недостатня швидкість інтернету, неправильні налаштування браузера тощо.</p>
+          <p>6.2. Сторони звільняються від відповідальності за невиконання зобов'язань у разі настання обставин непереборної сили (форс-мажор), які виникли після укладення договору і яких сторони не могли передбачити або запобігти. До таких обставин належать: стихійні лиха, пожежі, масові відключення електроенергії або інтернету в Україні тривалістю понад 48 годин, нові надзвичайні стани, оголошені органами державної влади, кібератаки на платформу SendPulse, рішення державних органів, що унеможливлюють виконання договору.</p>
+          <p><strong>7. ПЕРСОНАЛЬНІ ДАНІ ТА КОНФІДЕНЦІЙНІСТЬ</strong></p>
+          <p>7.1. Прийняттям цієї Оферти Покупець дає згоду на обробку своїх персональних даних (ім'я, електронна адреса, дані про оплату) Продавцем з метою виконання цього договору відповідно до Закону України «Про захист персональних даних».</p>
+          <p>7.2. Сайт Продавця використовує файли cookies та пікселі аналітики (зокрема Facebook Pixel, Google Analytics) для покращення сервісу, аналізу відвідувань і ефективності реклами.</p>
+          <p>7.3. Продавець зобов'язується не передавати персональні дані Покупця третім особам, окрім випадків, передбачених законодавством України, або з метою забезпечення роботи сервісів (платіжна система, платформа курсів, сервіси аналітики).</p>
+          <p><strong>8. РЕКВІЗИТИ ТА КОНТАКТИ ПРОДАВЦЯ</strong></p>
+          <p>ФОП Прокопюк Валентин Петрович<br />РНОКПП: 2985116935<br />Місце реєстрації: смт Путила, Чернівецька область, Україна<br />Контакти для зв'язку:<br />Email: <a href="mailto:plasticinezen@gmail.com">plasticinezen@gmail.com</a><br />Instagram: <a href="https://www.instagram.com/plasticine_zen" target="_blank" rel="noopener">@plasticine_zen</a><br />Час роботи підтримки: Пн–Пт, 9:00–19:00 (за київським часом).<br />Звернення опрацьовуються протягом 24 годин у робочий час.</p>
+        </div>
+      </details>
+
+      <details class="legal-item" id="privacy">
+        <summary class="legal-summary">ПОЛІТИКА КОНФІДЕНЦІЙНОСТІ</summary>
+        <div class="legal-content">
+          <p>Ця Політика конфіденційності діє для сайту PlasticineZen та визначає порядок обробки персональних даних Користувачів Адміністрацією сайту.</p>
+          <p><strong>1. ЗАГАЛЬНІ ПОЛОЖЕННЯ</strong></p>
+          <p>1.1. Оформлюючи замовлення на сайті, Користувач підтверджує свою згоду з цією Політикою.</p>
+          <p>1.2. Ми збираємо дані виключно для виконання замовлень та надання послуг.</p>
+          <p><strong>2. ПЕРСОНАЛЬНІ ДАНІ ТА ПЛАТЕЖІ</strong></p>
+          <p>2.1. Ми збираємо дані, які ви вказуєте під час оформлення покупки: ім'я, номер телефону та/або email.</p>
+          <p>2.2. Безпека платежів: Оплата здійснюється через платіжну систему WayForPay. Ми не збираємо і не зберігаємо дані ваших банківських карток. Введення платіжних даних відбувається на захищеній сторінці WayForPay.</p>
+          <p>2.3. Для здійснення транзакції ми передаємо платіжній системі лише необхідні дані для ідентифікації вашого замовлення.</p>
+          <p><strong>3. ЗГОДА НА ОБРОБКУ ТА ІНФОРМУВАННЯ</strong></p>
+          <p>3.1. Натисканням кнопки «Купити» (або іншої кнопки завершення замовлення), Користувач надає добровільну згоду на обробку своїх персональних даних.</p>
+          <p>3.2. Ця згода включає право Адміністрації використовувати вказані контакти для інформування про стан замовлення та новини проекту.</p>
+          <p><strong>4. ПЕРЕДАЧА ТРЕТІМ ОСОБАМ</strong></p>
+          <p>4.1. Ми не передаємо ваші дані третім особам, крім випадків, необхідних для виконання замовлення (платіжній системі WayForPay) або вимог закону України.</p>
+          <p><strong>5. ПРАВА КОРИСТУВАЧА</strong></p>
+          <p>5.1. Ви маєте право в будь-який момент відкликати згоду на обробку даних або вимагати їх видалення, надіславши запит на email власника.</p>
+          <p>6. Ми також можемо збирати ідентифікатори месенджерів (Telegram ID) для забезпечення автоматичного доступу до придбаного контенту через чат-боти.</p>
+          <p><strong>7. КОНТАКТИ ТА РЕКВІЗИТИ</strong></p>
+          <p>• Власник (Контролер): Прокопюк Валентин Петрович<br />• Email для зв’язку: plasticinezen@gmail.com</p>
+        </div>
+      </details>
+
+      <details class="legal-item" id="contacts">
+        <summary class="legal-summary">Контакти</summary>
+        <div class="legal-content">
+          <p>Email: <a href="mailto:plasticinezen@gmail.com">plasticinezen@gmail.com</a></p>
+          <p>Instagram: <a href="https://www.instagram.com/plasticine_zen" target="_blank" rel="noopener">@plasticine_zen</a></p>
+          <p>Час роботи підтримки: Пн–Пт, 9:00–19:00 (за київським часом).</p>
+          <p>Звернення опрацьовуються протягом 24 годин у робочий час.</p>
+        </div>
+      </details>
+
+      <details class="legal-item" id="payment" open>
+        <summary class="legal-summary">
+          <span class="pay-sum-inner">
+            <span class="pay-shield" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 5.06V4.08l7 3.11V11h-7V6.06zM5 7.3l6-2.67V11H5V7.3zm0 4.7h6v5.25c-3.1-.98-5.35-3.5-6-6.65V12zm8 5.37V12h6v.92c-.65 3.15-2.9 5.67-6 6.65z"/></svg>
+            </span>
+            <span>Оплата і безпека</span>
+          </span>
+        </summary>
+        <div class="legal-content">
+          <div class="pay-logos" aria-label="Платіжні системи">
+            <img
+              class="pay-logos-card"
+              src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Visa-Mastercard-1-1024x378.webp"
+              alt="Visa та Mastercard"
+              loading="lazy"
+            />
+            <img
+              class="liqpay-logo"
+              src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/wayforpay_logo_mixfin-1024x205.webp"
+              alt="WayForPay"
+              loading="lazy"
+            />
+            <span class="pay-mark pay-mark-apple" title="Apple Pay">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5-.13 1.17-.47 2.38-1.44 3.12-.79.68-1.84 1.08-2.94 1.13-.16-1.17.34-2.35 1.44-3.75z" /></svg>
+              <span class="pay-mark-txt">Pay</span>
+            </span>
+            <span class="pay-mark pay-mark-google" title="Google Pay">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+              <span class="pay-mark-txt">Pay</span>
+            </span>
+          </div>
+          <p class="pay-text">
+            Миттєво через Apple Pay, Google Pay, картки Monobank, Приват24 та інших банків. Оплата проходить через захищену сторінку WayForPay — ми не збираємо і не зберігаємо дані ваших банківських карток.
+          </p>
+        </div>
+      </details>
+
+      <div class="ig-footer">
+        <a class="ig-link" href="https://www.instagram.com/plasticine_zen?igsh=MWEzb2k5MTFlMzc0" target="_blank" rel="noopener noreferrer" aria-label="Instagram PlasticineZen">
+          <img src="https://fm.sendpul.se/fa3497bb757ff67371f35bfd29c12f5b9364872/Для сайту/Instagram_icon.png" alt="" aria-hidden="true" />
+          Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var btn = document.getElementById("vid-play-btn");
+      var video = document.getElementById("lesson-video");
+      var stage = document.getElementById("vid-stage");
+      if (!btn || !video || !stage) return;
+      btn.addEventListener("click", function () {
+        video.setAttribute("controls", "controls");
+        stage.classList.add("is-playing");
+        btn.setAttribute("hidden", "");
+        btn.setAttribute("aria-hidden", "true");
+        var p = video.play();
+        if (p && typeof p.catch === "function") {
+          p.catch(function () {});
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
